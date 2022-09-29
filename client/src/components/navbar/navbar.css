@@ -1,8 +1,24 @@
 .navContainer{
   width: 100%;
-  max-width: 1024px;
-  background: blue;
+  //max-width: 1024px;
+  background: #003570;
   color: white;
   display: flex;
   align-item: center;
+  justify-content: space-between;
+}
+.nlogo{
+  color: white;
+}
+.nBtn{
+  margin-right: 10px;
+  padding: 5px 10px;
+  background: #003570;
+  border: 2px solid white;
+  color: white;
+  cursor: pointer;
+}
+.nBtn:last-child{ margin-right: 0; }
+.userNav{
+  //margin-left: auto;
 }

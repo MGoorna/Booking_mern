@@ -1,10 +1,11 @@
 import Featured from '../components/featured/Featured'
 import Navbar from '../components/navbar/Navbar'
+import Header from '../components/header/Header'
 
 const Home = () => {
   return ( <>
   <Navbar />
-
+  <Header />
   <header className="App-header">
         <p>
           Edit <code>src/App.js</code> and save to reload.

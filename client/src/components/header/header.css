@@ -1,0 +1,38 @@
+.hContainer{
+  width: 100%;
+  background: #003570;
+  color: white;
+  position: relative;
+}
+.hList{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  gap: 10px;
+}
+.hlItem{
+  display: flex;
+  gap: 10px;
+}
+//search module
+.hSearchbox{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  transform: translateY(50%);
+}
+.hsItem{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+.hsInput{
+
+}

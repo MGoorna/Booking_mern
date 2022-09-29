@@ -10,12 +10,12 @@ const Navbar = () => {
     <div className="navbar">
       <div className="navContainer">
         <Link to="/">
-          <span className="logo"></span>
+          <span className="nlogo">LOGO</span>
         </Link>
         {user ? user.email : (
           <div className="userNav">
-            <button type='text' className="navBtn">Login</button>
-            <button type='text' className="navBtn">Register</button>
+            <button type='text' className="nBtn">Login</button>
+            <button type='text' className="nBtn">Register</button>
           </div>
         )}
       </div>

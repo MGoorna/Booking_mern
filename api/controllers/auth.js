@@ -30,7 +30,7 @@ export const login = async(req, res) => {
     
     const isPasswordCorrect = bcrypt.compare(req.body.password, user.password);
     if(!isPasswordCorrect) return res.status(400).json('Wrong password or username')
-const {password, isAdmin, ...otherDetails} = user._doc
+    const {password, isAdmin, ...otherDetails} = user._doc
     res.status(200).json(otherDetails)
   }
   catch(err){

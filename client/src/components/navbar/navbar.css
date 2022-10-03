@@ -1,10 +1,14 @@
+.navbar{
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+  background: #003570;
+}
 .navContainer{
   width: 100%;
-  //max-width: 1024px;
-  background: #003570;
+  max-width: 1024px;
   color: white;
   display: flex;
-  align-item: center;
   justify-content: space-between;
 }
 .nlogo{

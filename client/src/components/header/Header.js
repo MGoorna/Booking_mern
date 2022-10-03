@@ -1,55 +1,142 @@
-import { Link } from 'react-router-dom'
-import { FaHotel, FaBed, FaCar, FaPlane, FaCalendarDay } from "react-icons/fa";
-import './header.css'
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { FaHotel, FaBed, FaCar, FaPlane, FaCalendarDay, FaUserAlt } from "react-icons/fa";
+import { DateRange } from 'react-date-range';
+import { format } from 'date-fns';
+import './header.css';
+
 
 const Header = () => {
+  const [openDate, setOpenDate] = useState(false);
+  const [date, setDate] = useState([
+    {
+      startDate: new Date(),
+      endDate: new Date(),
+      key: 'selection'
+    }
+  ]);
+
+  const [openOptions, setOpenOptions] = useState(false);
+  const [options, setOptions] = useState({
+    adult: 1,
+    children: 0,
+    room: 1
+  });
+
+  const handleStepper = (name, operation) => {
+    setOptions(prev => {
+      return {
+        ...prev, [name]: operation === 'increase' ? options[name]+1 : options[name]-1
+      }
+    })
+  };
+  
   return ( <>
     <div className="header">
       <div className="hContainer">
         <div className="hList">
-          <div className="hlItem">
-            <FaHotel />
+          <div className="hlItem active">
+            <FaHotel size={'1.5em'}/>
             <span>Stays</span>
           </div>
           <div className="hlItem">
-            <FaBed />
+            <FaBed size={'1.5em'}/>
             <span>Beds</span>
           </div>
           <div className="hlItem">
-            <FaPlane />
+            <FaPlane size={'1.5em'}/>
             <span>Flights</span>
           </div>
           <div className="hlItem">
-            <FaCar />
+            <FaCar size={'1.5em'}/>
             <span>Car rental</span>
           </div>       
         </div>
-        <p>Available until Jan 3, 2024</p>
-        <h1>Save 15% with Late Escape Deals</h1>
-        <p>There's still time to check one more destination off your wushlist</p>
-        <Link href="">Explore deals</Link>
+        <div className="hDesc">
+          <p>Available until Jan 3, 2024</p>
+          <h1>Save 15% with Late Escape Deals</h1>
+          <p>There's still time to check one more destination off your wushlist</p>
+          <Link href="">Explore deals</Link>
+          <Link to="/about" className="btn">About</Link>
+          <div>jkdslfhsl</div>
+        </div>
         <div className="hSearchbox">
-          <div className="hsItem">
-            <FaBed/>
+          <div className="hs__item">
+            <div className="hs__ikon"><FaCalendarDay/></div>
             <input 
               type="text" 
               placeholder="Where are you going"
-              className='hsInput'/>
+              className='hs__input'/>
           </div>
-          <div className="hsItem">
-            <FaBed/>
-            <input 
-              type="text" 
-              placeholder=""
-              className='hsInput'/>
+          <div className="hs__item">           
+            <div className="hs__ikon"><FaBed/></div>
+            <span className="hsDateText" 
+              onClick={()=>setOpenDate(!openDate)} 
+              style={{'color':'rgb(189, 189, 189)'}}>
+              {`${format(date[0].startDate, "MM/dd/yyyy")} `} 
+               to  
+              {` ${format(date[0].endDate, "MM/dd/yyyy")}`} 
+            </span>
+            <span className='hs__date-range'>
+            {openDate && <DateRange
+              editableDateInputs={true}
+              onChange={item => setDate([item.selection])}
+              moveRangeOnFirstSelection={false}
+              ranges={date}            
+            />}
+            </span>
           </div>
-          <div className="hsItem">
-            <FaBed/>
-            <input 
-              style={{ backgroundImage: `url(${FaBed})` }}
-              type="text" 
-              placeholder=""
-              className='hsInput'/>
+          <div className="hs__item">
+            <div className="hs__ikon"><FaUserAlt/></div>
+            <div className="hs__guests-occupancy" role="button" aria-expanded="false">
+              <span className="xp__guests__count" onClick={()=>{setOpenOptions(!openOptions)}}>
+                <span data-adults-count="">{`${options.adult}`} adults</span>
+                <span data-visible="accommodation">
+                  &nbsp;·&nbsp;
+                  <span>{`${options.children}`} children</span>
+                </span>
+                <span data-visible="accommodation">
+                  &nbsp;·&nbsp;
+                  <span>{`${options.room}`} room</span>
+                </span>
+              </span>
+            </div>
+            {openOptions && <div className="hs__guests-stepper-container">
+              <div className="hs__stepper">
+                <span>Adults</span>
+                <div className="hs__stepper-wrapper">
+                  <button 
+                    className="hs_stepper_counter" 
+                    disabled={options.adult === 0}
+                    onClick={()=>handleStepper('adult','decrease')}>-</button>
+                  <span>{options.adult}</span>
+                  <button className="hs_stepper_counter" 
+                    onClick={()=>handleStepper('adult','increase')}>+</button>
+                </div>
+              </div>
+              <div className="hs__stepper">
+                <span>Children</span>
+                <div className="hs__stepper-wrapper">
+                  <button 
+                    className="hs_stepper_counter" 
+                    disabled={options.children === 0}
+                    onClick={()=>handleStepper('children','decrease')}>-</button>
+                  <span>{options.children}</span>
+                  <button className="hs_stepper_counter" onClick={()=>handleStepper('children','increase')}>+</button>
+                </div>
+              </div>
+              <div className="hs__stepper">
+                <span>Rooms</span>
+                <div className="hs__stepper-wrapper">
+                  <button 
+                    className="hs_stepper_counter" 
+                    disabled={options.room === 0}
+                    onClick={()=>handleStepper('room','decrease')}>-</button>
+                  <span>{options.room}</span>
+                  <button className="hs_stepper_counter" onClick={()=>handleStepper('room','increase')}>+</button>
+                </div>
+              </div>
+            </div>}
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ const Home = () => {
   return ( <>
   <Navbar />
   <Header />
-  <header className="App-header">
+  <div className="App-header">
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
@@ -19,7 +19,7 @@ const Home = () => {
           Learn React
         </a>
         <Featured />
-      </header>
+      </div>
   </> );
 }
  

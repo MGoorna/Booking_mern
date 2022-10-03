@@ -11,7 +11,7 @@ router.get('/', getHotels)
 router.get('/findByCity', getHotelByCity)
 router.get('/type/findByType', getHotelByType)
 
-//Create
+//CREATE
 router.post('/', createHotel)
 
 //DELETE 

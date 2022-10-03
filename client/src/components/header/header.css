@@ -7,15 +7,16 @@
   --section_space: 30px;
 }
 .btn{
+  padding: 16px;
   position: relative;
-  color: var(--primary-color);
-  font-size: 20px;
+  background: var(--secondary-color);
+  color: var(--white);
+  text-decoration: none;
+  border-radius: 3px;
 }
 .btn:before{
-  background: var(--white);
-  color: var(--primary-color);
   border: 1px solid transparent;
-  border-radius: 1px;
+  border-radius: 3px;
   bottom: 0;
   box-sizing: border-box;
   content: "";
@@ -25,37 +26,36 @@
   right: 0;
   top: 0;
 }
-
 .header{
-  position: sticky;
+  //position: sticky;
   top: 0;
   width: 100%;
   height: auto;
   padding-top: var(--section_space);
   z-index: 10;
   //contain: size style layout;
-  max-width: var(--page-shell-max-content-width, 1760px);
-  //padding: 0 var(--explore_padding-inline);
   line-height: 20px !important;
   background: var(--primary-color);
   display: flex;
   justify-content: center;
 }
-.hContainer{
+.h__container{
   width: 100%;
-  max-width: 1024px;
+  max-width: 1124px;
   color: white;
   position: relative;
 }
-.hContainer h1, p{ text-align: left;}
-.hList{
+.h__container h1, p{ 
+  text-align: left;
+  line-height: 32px;
+}
+.h__list{
   display: flex;
   flex-direction: row;
   align-content: center;
   gap: 10px;
 }
-
-.hlItem{
+.hl__item{
   margin-right: 30px;
   padding: 10px 15px;
   display: flex;
@@ -63,19 +63,21 @@
   gap: 10px;
   border: 0px solid white;
   border-radius: 999px;
+  cursor: pointer;
 }
-.hlItem.active{
+.hl__item.active{
   padding: 12px;
   background-color: #0071c2;
   border: 1px solid white;
 }
-.hlItem:hover{
+.hl__item:hover{
   background: var(--secondary-color);
 }
-.hDesc{
-  padding-bottom: 30px;
+.h__desc{
+  padding: 48px 0 95px;
+  text-align: left;
 }
-.hSearchbox{
+.h__search-box{
   margin: auto;  
   display: flex;
   flex-direction: row;
@@ -94,10 +96,10 @@
 }
 .hs__item{
   width: 100%;
-  //padding: 0 0 0 44px;
   display: flex;
   flex-direction: row;
   align-items: center;
+  text-align: left;
   gap: 10px;
   background-color: white;
   border-radius: 2px;
@@ -113,7 +115,6 @@
   outline-width: 0;
   z-index: 1;
 }
-
 .hs__ikon{
   position: absolute;
   top: 27%;
@@ -122,15 +123,17 @@
   font-size: 18px;
   z-index: 2;
 }
-.hsDateText{
+.hs__date-text{
   padding-left: 44px;
+  width: 100%;
 }
 .hs__date-range{
   position: absolute;
   top: 50px;
 }
 .hs__guests-occupancy{
-  padding: 0 0 0 44px
+  padding: 0 0 0 44px;
+  width: 100%;
 }
 .hs__guests-stepper-container{
   position: absolute;
@@ -141,7 +144,6 @@
   flex-direction: column;
   gap: 10px;
   background-color: white;
-
 }
 .hs__stepper{
   display: flex;
@@ -163,12 +165,14 @@
   cursor:pointer;
   line-height: 21px;
 }
+.hs_stepper_counter:disabled{
+  cursor: not-allowed;
+}
 .hs_stepper_counter:before{
   content: "";
   position: absolute;
-  //border: 1px solid rgb(0,113,194);
   top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }

@@ -6,7 +6,7 @@ import { format } from 'date-fns';
 import './header.css';
 
 
-const Header = () => {
+const Header = ({ type }) => {
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -33,34 +33,33 @@ const Header = () => {
   
   return ( <>
     <div className="header">
-      <div className="hContainer">
-        <div className="hList">
-          <div className="hlItem active">
+      <div className="h__container">
+        <div className="h__list">
+          <div className="hl__item active">
             <FaHotel size={'1.5em'}/>
             <span>Stays</span>
           </div>
-          <div className="hlItem">
+          <div className="hl__item">
             <FaBed size={'1.5em'}/>
             <span>Beds</span>
           </div>
-          <div className="hlItem">
+          <div className="hl__item">
             <FaPlane size={'1.5em'}/>
             <span>Flights</span>
           </div>
-          <div className="hlItem">
+          <div className="hl__item">
             <FaCar size={'1.5em'}/>
             <span>Car rental</span>
           </div>       
         </div>
-        <div className="hDesc">
+        {type !== 'list' && 
+        <><div className="h__desc">
           <p>Available until Jan 3, 2024</p>
           <h1>Save 15% with Late Escape Deals</h1>
-          <p>There's still time to check one more destination off your wushlist</p>
-          <Link href="">Explore deals</Link>
-          <Link to="/about" className="btn">About</Link>
-          <div>jkdslfhsl</div>
+          <p>There's still time to check one more destination off your wishlist</p>
+          <Link to="/about" className="btn">Explore deals</Link>
         </div>
-        <div className="hSearchbox">
+        <div className="h__search-box">
           <div className="hs__item">
             <div className="hs__ikon"><FaCalendarDay/></div>
             <input 
@@ -70,7 +69,7 @@ const Header = () => {
           </div>
           <div className="hs__item">           
             <div className="hs__ikon"><FaBed/></div>
-            <span className="hsDateText" 
+            <span className="hs__date-text" 
               onClick={()=>setOpenDate(!openDate)} 
               style={{'color':'rgb(189, 189, 189)'}}>
               {`${format(date[0].startDate, "MM/dd/yyyy")} `} 
@@ -88,7 +87,11 @@ const Header = () => {
           </div>
           <div className="hs__item">
             <div className="hs__ikon"><FaUserAlt/></div>
-            <div className="hs__guests-occupancy" role="button" aria-expanded="false">
+            <div 
+              className="hs__guests-occupancy" 
+              role="button" 
+              aria-expanded="false"
+              >
               <span className="xp__guests__count" onClick={()=>{setOpenOptions(!openOptions)}}>
                 <span data-adults-count="">{`${options.adult}`} adults</span>
                 <span data-visible="accommodation">
@@ -138,7 +141,7 @@ const Header = () => {
               </div>
             </div>}
           </div>
-        </div>
+        </div></>}
       </div>
     </div>
   </> );

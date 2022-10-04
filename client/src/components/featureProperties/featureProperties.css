@@ -1,0 +1,20 @@
+.pl__container{
+  width: 100%;
+  max-width: 1124px;
+  display: flex;
+  flex-direction: row;
+  text-align: left;
+  gap: 20px;
+}
+.pl__container>div{
+  flex: 1;
+  overflow: hidden;
+}
+.pl__title{
+  font-weight: bold;
+  line-height: 7px;
+  color: #262626;
+}
+.pl__subtitle{
+  color: #605d5d;
+}

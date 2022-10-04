@@ -1,0 +1,26 @@
+.l__container{
+  width: 100%;
+  max-width: 1124px;
+  display: flex; 
+  flex-direction: row;
+  gap: 20px;
+  text-align: left;
+}
+.l__container>div{
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  border-radius: 3px;
+}
+.l__img{
+  border-radius: 3px;
+}
+.l__image-content{
+  position: absolute;
+  top: 0;
+  left: 20px;
+}
+.l__title{
+  font-weight: bold;
+  font-size: 32px;
+}

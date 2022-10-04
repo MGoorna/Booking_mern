@@ -1,0 +1,24 @@
+:root {
+  --primary-color: #003570;
+  --secondary-color: #0071c2;
+  --white: white;
+  --page-shell-max-content-width: 2520px;
+  --explore_padding-inline: 80px;
+  --section_space: 30px;
+}
+
+.home{
+  padding-top: var(--explore_padding-inline);
+  display: flex;
+  justify-content: center;
+
+}
+.h__container{
+  width: 100%;
+  max-width: 1124px;
+  position: relative;
+  text-align: left;
+}
+.h__title{
+  color: black;
+}

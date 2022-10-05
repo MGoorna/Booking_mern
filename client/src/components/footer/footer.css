@@ -1,0 +1,10 @@
+.f__container{
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 20px; 
+}
+.f__list>li{
+  list-style: none;
+}

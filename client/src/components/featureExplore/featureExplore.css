@@ -1,5 +1,5 @@
 
-.pl__container{
+.fl__container{
   margin: 0 auto;
   width: 100%;
   max-width: 1124px;
@@ -8,15 +8,15 @@
   text-align: left;
   gap: 20px;
 }
-.pl__container>div{
+.fl__container>div{
   flex: 1;
   overflow: hidden;
 }
-.pl__title{
+.fl__title{
   font-weight: bold;
   line-height: 7px;
   color: var(--text-primary-color);
 }
-.pl__subtitle{
+.fl__subtitle{
   color: var(--text-grey-color);
 }

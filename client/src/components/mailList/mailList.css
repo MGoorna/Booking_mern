@@ -1,0 +1,17 @@
+.m__container{
+  margin: 0 auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: var(--primary-color);
+  color: var(--white);
+}
+.m__input-container{
+  display: flex;
+  flex-direction: row;
+}
+.m__btn{
+  border: 2px solid white;
+}

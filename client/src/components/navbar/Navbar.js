@@ -8,14 +8,14 @@ const Navbar = () => {
 
   return ( <>
     <div className="navbar">
-      <div className="navContainer">
+      <div className="n__container">
         <Link to="/">
-          <span className="nlogo">LOGO</span>
+          <span className="n__logo">LOGO</span>
         </Link>
         {user ? user.email : (
-          <div className="userNav">
-            <button type='text' className="nBtn">Login</button>
-            <button type='text' className="nBtn">Register</button>
+          <div className="n__user-nav">
+            <button type='text' className="n__btn">Login</button>
+            <button type='text' className="n__btn">Register</button>
           </div>
         )}
       </div>

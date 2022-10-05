@@ -33,7 +33,7 @@ const Header = ({ type }) => {
   
   return ( <>
     <div className="header">
-      <div className="h__container">
+      <div className="header__container">
         <div className="h__list">
           <div className="hl__item active">
             <FaHotel size={'1.5em'}/>

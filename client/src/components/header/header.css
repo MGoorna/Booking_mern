@@ -1,31 +1,3 @@
-:root {
-  --primary-color: #003570;
-  --secondary-color: #0071c2;
-  --white: white;
-  --page-shell-max-content-width: 2520px;
-  --explore_padding-inline: 80px;
-  --section_space: 30px;
-}
-.btn{
-  padding: 16px;
-  position: relative;
-  background: var(--secondary-color);
-  color: var(--white);
-  text-decoration: none;
-  border-radius: 3px;
-}
-.btn:before{
-  border: 1px solid transparent;
-  border-radius: 3px;
-  bottom: 0;
-  box-sizing: border-box;
-  content: "";
-  left: 0;
-  pointer-events: none;
-  position: absolute;
-  right: 0;
-  top: 0;
-}
 .header{
   //position: sticky;
   top: 0;
@@ -39,13 +11,13 @@
   display: flex;
   justify-content: center;
 }
-.h__container{
+.header__container{
   width: 100%;
   max-width: 1124px;
   color: white;
   position: relative;
 }
-.h__container h1, p{ 
+.header__container h1, p{ 
   text-align: left;
   line-height: 32px;
 }

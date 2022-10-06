@@ -11,7 +11,7 @@ const Home = () => {
   return ( <>
     <Navbar />
     <Header />   
-    <div className="home">
+    <main className="home">
       <div className="h__container">
         <h2 className="h__title">Homes guests love</h2>
         <Featured />      
@@ -23,7 +23,7 @@ const Home = () => {
         <MailList />
         <Footer />
       </div>
-    </div>
+    </main>
   </> );
 }
  

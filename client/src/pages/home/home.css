@@ -8,6 +8,7 @@
   --text-primary-color: #262626;
   --text-secondary-color: #fff;
   --text-grey-color: #605d5d;
+  --search-color: #febb02;
 }
 .btn{
   padding: 16px;
@@ -16,6 +17,7 @@
   color: var(--white);
   text-decoration: none;
   border-radius: 3px;
+  cursor: pointer;
 }
 .btn:before{
   border: 1px solid transparent;

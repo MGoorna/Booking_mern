@@ -1,0 +1,48 @@
+:root{
+  
+}
+.list{}
+.list__container{
+  margin: 0 auto;
+  width: 100%;
+  max-width: 1124px;
+  position: relative;
+  text-align: left;
+  display: flex;
+  flex-direction: row;
+  gap: 20px; 
+}
+.list__title{}
+/* search */
+.list__search{
+ flex: 1;
+}
+.list__search-panel{
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 8px;
+  background-color: var(--search-color);
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.list__search-panel>div,
+.list__search-panel>div>input{
+  width: 100%;
+  flex-grow: 1;
+  border: none !important;
+  //outline: none !important;
+  padding: 12px 8px;
+  min-height: 1px !important;
+  //appearance: none !important;
+}
+.sb__title{}
+.s__btn{
+  width: 100%;
+}
+/* hotels list */
+.list__hotels{
+  flex: 3;
+}

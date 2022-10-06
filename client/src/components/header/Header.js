@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaHotel, FaBed, FaCar, FaPlane, FaCalendarDay, FaUserAlt } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
@@ -7,6 +7,7 @@ import './header.css';
 
 
 const Header = ({ type }) => {
+  const [destination, setDestination] = useState('');
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -31,6 +32,11 @@ const Header = ({ type }) => {
     })
   };
   
+  const navigate = useNavigate();
+
+  const handleSearch = () =>{
+    navigate('/list', {state:{ destination, date, options}});   
+  }
   return ( <>
     <div className="header">
       <div className="header__container">
@@ -52,8 +58,8 @@ const Header = ({ type }) => {
             <span>Car rental</span>
           </div>       
         </div>
-        {type !== 'list' && 
-        <><div className="h__desc">
+        {type !== 'list' && <>
+        <div className="h__desc">
           <p>Available until Jan 3, 2024</p>
           <h1>Save 15% with Late Escape Deals</h1>
           <p>There's still time to check one more destination off your wishlist</p>
@@ -65,7 +71,9 @@ const Header = ({ type }) => {
             <input 
               type="text" 
               placeholder="Where are you going"
-              className='hs__input'/>
+              className='hs__input'
+              onClick={(e)=>{setDestination(e.target.value)}}
+              />
           </div>
           <div className="hs__item">           
             <div className="hs__ikon"><FaBed/></div>
@@ -141,7 +149,9 @@ const Header = ({ type }) => {
               </div>
             </div>}
           </div>
-        </div></>}
+          <button className="btn" onClick={handleSearch}>Search</button>
+        </div>
+        </>}
       </div>
     </div>
   </> );

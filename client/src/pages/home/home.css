@@ -7,8 +7,9 @@
   --section_space: 30px;
   --text-primary-color: #262626;
   --text-secondary-color: #fff;
-  --text-grey-color: #605d5d;
+  --text-grey-color: #c5c5c5;
   --search-color: #febb02;
+  --link-color: #0071c2;
 }
 .btn{
   padding: 16px;

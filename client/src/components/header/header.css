@@ -3,7 +3,8 @@
   top: 0;
   width: 100%;
   height: auto;
-  padding-top: var(--section_space);
+  padding-top: var(--section-space-small);
+  padding-bottom: var(--section-space-small);
   z-index: 10;
   //contain: size style layout;
   line-height: 20px !important;

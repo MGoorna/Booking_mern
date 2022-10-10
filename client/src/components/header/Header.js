@@ -7,7 +7,7 @@ import './header.css';
 
 
 const Header = ({ type }) => {
-  const [destination, setDestination] = useState('');
+  const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -35,10 +35,11 @@ const Header = ({ type }) => {
   const navigate = useNavigate();
 
   const handleSearch = () =>{
-    navigate('/list', {state:{ destination, date, options}});   
+    navigate('/list', {state:{ destination, date, options }});   
   }
+  
   return ( <>
-    <div className="header">
+    <header className="header">
       <div className="header__container">
         <div className="h__list">
           <div className="hl__item active">
@@ -72,7 +73,7 @@ const Header = ({ type }) => {
               type="text" 
               placeholder="Where are you going"
               className='hs__input'
-              onClick={(e)=>{setDestination(e.target.value)}}
+              onChange={(e) => setDestination(e.target.value)}
               />
           </div>
           <div className="hs__item">           
@@ -119,10 +120,11 @@ const Header = ({ type }) => {
                   <button 
                     className="hs_stepper_counter" 
                     disabled={options.adult === 0}
-                    onClick={()=>handleStepper('adult','decrease')}>-</button>
+                    onChange={()=>handleStepper('adult','decrease')}>-</button>
                   <span>{options.adult}</span>
-                  <button className="hs_stepper_counter" 
-                    onClick={()=>handleStepper('adult','increase')}>+</button>
+                  <button 
+                    className="hs_stepper_counter" 
+                    onChange={()=>handleStepper('adult','increase')}>+</button>
                 </div>
               </div>
               <div className="hs__stepper">
@@ -131,9 +133,11 @@ const Header = ({ type }) => {
                   <button 
                     className="hs_stepper_counter" 
                     disabled={options.children === 0}
-                    onClick={()=>handleStepper('children','decrease')}>-</button>
+                    onChange={()=>handleStepper('children','decrease')}>-</button>
                   <span>{options.children}</span>
-                  <button className="hs_stepper_counter" onClick={()=>handleStepper('children','increase')}>+</button>
+                  <button 
+                    className="hs_stepper_counter" 
+                    onChange={()=>handleStepper('children','increase')}>+</button>
                 </div>
               </div>
               <div className="hs__stepper">
@@ -142,9 +146,11 @@ const Header = ({ type }) => {
                   <button 
                     className="hs_stepper_counter" 
                     disabled={options.room === 0}
-                    onClick={()=>handleStepper('room','decrease')}>-</button>
+                    onChange={()=>handleStepper('room','decrease')}>-</button>
                   <span>{options.room}</span>
-                  <button className="hs_stepper_counter" onClick={()=>handleStepper('room','increase')}>+</button>
+                  <button 
+                    className="hs_stepper_counter" 
+                    onChange={()=>handleStepper('room','increase')}>+</button>
                 </div>
               </div>
             </div>}
@@ -153,7 +159,7 @@ const Header = ({ type }) => {
         </div>
         </>}
       </div>
-    </div>
+    </header>
   </> );
 }
  

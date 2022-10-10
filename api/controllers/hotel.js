@@ -12,7 +12,7 @@ export const createHotel = async(req, res, next) => {
 
 export const getHotel = async(req, res, next) => { 
   try{
-    const hotel = await Hotel.findOne({ name: req.params.name }) 
+    const hotel = await Hotel.findById(req.params.id);
     res.status(200).json(hotel)
   }catch(error){
     res.status(500).json(error)
@@ -43,7 +43,11 @@ export const getHotelByType = async(req, res, next) => {
 }
 
 export const getHotels = async(req, res, next) => {
-  const hotels = await Hotel.find().sort({createdAt: 'desc'})
+  const {min, max, ...others} = req.body;
+  const hotels = await Hotel.find({
+    ...others,
+    cheapestPrice: {$gt:min | 1, $lt: max|| 999},
+  }).limit(req.query.limit).sort({createdAt: 'desc'})
   res.status(200).json(hotels)
 }
 

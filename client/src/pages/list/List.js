@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import useFetch from "../../hooks/useFetch";
@@ -8,14 +8,26 @@ import "./list.css";
 
 const List = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [destination, setDestination] = useState(location.state.destination)
   const [date, setDate] = useState(location.state.date)
-  const [hotels, setHotels] = useState(location.state.hotels);
+  const [options, setOptions] = useState(location.state.options);
 
   const { data, error, loading } = useFetch(`/hotel`)
 
-  console.log(location, data)
+  const handleOptions = (value, type) => {
+    setOptions((prev)=>{
+      return {
+        ...prev, [type]:value
+      }
+    })
+  }
 
+  console.log(location, data, date, options, 'destination', destination)
+  const handleNavigate = () => {
+    const id = location.pathname.split("/")[2];
+    navigate('./hotel', id)
+  }
   return ( <>
     <Navbar />
     <Header type="list"/>
@@ -26,23 +38,70 @@ const List = () => {
             <h2 className="explore__title">Search</h2>
             <div>
               <label htmlFor="">Destination/property name:</label>
-              <input type="text" placeholder="hotel-name"/>
+              <input 
+                type="text" 
+                placeholder="hotel-name"
+                value={destination} 
+                onChange={(e)=>setDestination(e.target.value)}/>
             </div>
             <div>
               <label htmlFor="">Check-in date</label>
-              <input type="text" placeholder="hotel-name"/>
-            </div>
-            <div>
-              <label htmlFor="">Destination/property name:</label>
-              <input type="text" placeholder="hotel-name"/>
+              <input type="text" 
+                placeholder="hotel-name" 
+                value={date}
+                onChange={(e)=>setDate(e.target.value)}/>
             </div>
             <div>
               <label htmlFor="">9-night stay</label>
-              <input type="text" placeholder="3 adults 1 child 1 room"/>
+              <input 
+                type="text"
+                placeholder="3 adults 1 child 1 room"
+                value={options.adult}
+                onChange={(e)=>setOptions(e.target.value)} />
             </div>
             <div>
-              <label htmlFor="">
+              <label htmlFor="" className="explore__options">
                 Options
+                <div>
+                  <label htmlFor="">Min price per night</label>
+                  <input 
+                    type="text"
+                    placeholder="min price"
+                    value={options.minPrice}
+                    onChange={(e)=>handleOptions(e.target.value, 'minPrice')} />
+                </div>
+                <div>
+                  <label htmlFor="">Max price per night</label>
+                  <input 
+                    type="text"
+                    placeholder="max price"
+                    value={options.maxPrice}
+                    onChange={(e)=>handleOptions(e.target.value, 'maxPrice')} />
+                </div>
+                <div>
+                  <label htmlFor="">adults</label>
+                  <input 
+                    type="text"
+                    placeholder="3 adults"
+                    value={options.adult}
+                    onChange={(e)=>handleOptions(e.target.value, 'adult')} />
+                </div>
+                <div>
+                  <label htmlFor="">children</label>
+                  <input 
+                    type="text"
+                    placeholder="1 children"
+                    value={options.children}
+                    onChange={(e)=>handleOptions(e.target.value, 'children')} />
+                </div>
+                <div>
+                  <label htmlFor="">room</label>
+                  <input 
+                    type="text"
+                    placeholder="1 room"
+                    value={options.room}
+                    onChange={(e)=>handleOptions(e.target.value, 'room')} />
+                </div>
               </label>
             </div>
             <div>
@@ -78,7 +137,11 @@ const List = () => {
               <img src="https://t-cf.bstatic.com/xdata/images/hotel/square200/156678874.webp?k=93a139bc44d05e3b570715b7f5fc41e8e3431553e54aec65554c94a5f894110e&o=&s=1" alt="Hotel_la_Palma" />
             </div>
             <div className="explore__hotel-details">
-              <h3 className="explore__hotel-title">Hotel la Palma au LacOpens in new window</h3>
+              <h3 className="explore__hotel-title" onClick={handleNavigate}>
+                <Link >
+                  Hotel la Palma au LacOpens in new window
+                </Link>               
+                </h3>
               <span className="explore__hotel-stars"><BsStarFill/><BsStarFill/><BsStarFill/><BsStarFill/><BsStarHalf/></span>
               <div className="explore__hotel-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi dolor, deleniti omnis quibusdam inventore mollitia natus aut. Nesciunt, voluptate nisi?</div>
             </div>

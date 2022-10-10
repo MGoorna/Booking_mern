@@ -2,8 +2,8 @@ import "./footer.css";
 
 const Footer = () => {
   return (
-    <div className="footer">
-      <div className="f__container">
+    <footer className="footer">
+      <nav className="f__container">
         <ul className="f__list">
           <li>Countries</li>
           <li>Regions</li>
@@ -43,9 +43,9 @@ const Footer = () => {
           <li>Investor relations</li>
           <li>Terms & conditions</li>
         </ul>
-      </div>
+      </nav>
       <div className="fText">Copyright © 2022 Booking.</div>
-    </div>
+    </footer>
   );
 };
 

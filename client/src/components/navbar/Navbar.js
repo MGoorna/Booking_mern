@@ -7,8 +7,8 @@ const Navbar = () => {
   const {user} = useContext(AuthContext)
 
   return ( <>
-    <div className="navbar">
-      <div className="n__container">
+    <header className="navbar">
+      <nav className="n__container">
         <Link to="/">
           <span className="n__logo">LOGO</span>
         </Link>
@@ -18,8 +18,8 @@ const Navbar = () => {
             <button type='text' className="n__btn">Register</button>
           </div>
         )}
-      </div>
-    </div>
+      </nav>
+    </header>
   </> );
 }
 export default Navbar;

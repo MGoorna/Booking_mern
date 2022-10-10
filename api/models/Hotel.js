@@ -22,7 +22,8 @@ const Hotel = new mongoose.Schema({
   cheapestPrice: {
     type:Number,
     requred: true,
-  }
+  },
+  photos: [String],
 },{
   timestamps: true
 })

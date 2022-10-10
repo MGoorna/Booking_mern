@@ -4,7 +4,7 @@ import { getHotel, getHotels, createHotel, deleteHotel, updateHotel, getHotelByC
 const router = express.Router()
 
 //GET a single hotel
-router.get('find/:name', getHotel)
+router.get('/find/:id', getHotel)
 
 //GET ALL hotels
 router.get('/', getHotels)

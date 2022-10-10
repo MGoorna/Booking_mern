@@ -4,12 +4,17 @@
   --white: white;
   --page-shell-max-content-width: 2520px;
   --explore_padding-inline: 80px;
-  --section_space: 30px;
   --text-primary-color: #262626;
   --text-secondary-color: #fff;
   --text-grey-color: #c5c5c5;
   --search-color: #febb02;
   --link-color: #0071c2;
+  --space-small: 12px;
+  --space-medium: 24px;
+  --space-big: 48px;
+  --section-space-small: 12px;
+  --section-space-medium: 24px;
+  --section-space-big: 36px;
 }
 .btn{
   padding: 16px;

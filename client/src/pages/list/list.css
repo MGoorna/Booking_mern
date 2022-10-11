@@ -76,6 +76,9 @@
 .explore__img-container{
   flex: 1;
 }
+.explore__img-container img{
+  max-width: 250px;
+}
 .explore__hotel-details{
   flex: 3;
 }

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import { FaCity, FaTree, FaPaw, FcCheckmark, FaWifi, FaBath, FaSnowflake, FaParking } from "react-icons/fa";
@@ -6,8 +8,13 @@ import useFetch from "../../hooks/useFetch";
 import "./hotel.css";
 
 const Hotel = () => {
-  const { data, loading, error } = useFetch(`/hotel/find/63443252900c165c1d798f43`)
-  console.log('data', data, data.photos)
+  //const { data, loading, error } = useFetch(`/hotel/find/63443252900c165c1d798f43`);
+  const location = useLocation();
+  const [id, setId] = useState(location.state.id);
+
+  const { data, loading, error } = useFetch(`/hotel/find/${id}`)
+  console.log('data', data)
+  console.log('location',location)
 
   return ( <>
   <Navbar />
@@ -19,14 +26,13 @@ const Hotel = () => {
       <h1 className="hotel__title">{data.name}</h1>
       <div className="hotel__address">
         <FaCity size={32}/>
-        <span>Big street 123, London</span>
+        <span>{data.address}</span>
       </div>
       <div className="hotel__images">
         <div className="hotel__img-wrapper">
-        {data.photos.map(img=>(
-            <img className="hotel__img" src={img} alt={data.name}/>
-          ))}
-  
+        {data && data.photos && data.photos.map(img=>(
+            <img className="hotel__img" src={img} alt={data.name} key={img}/>
+        ))} 
         </div>
       </div>
       <div className="hotel__property-highlights">

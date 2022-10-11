@@ -12,9 +12,13 @@ const List = () => {
   const [destination, setDestination] = useState(location.state.destination)
   const [date, setDate] = useState(location.state.date)
   const [options, setOptions] = useState(location.state.options);
+  const [minPrice, setMinPrice] = useState(undefined);
+  const [maxPrice, setMaxPrice] = useState(undefined);
 
-  const { data, error, loading } = useFetch(`/hotel`)
-
+  //const { data, error, loading } = useFetch(`/hotels/findByCity?cities=${destination}`)
+  const { data, error, loading, reFetch } = useFetch(
+    `/hotel/findByCitySingle?city=${destination}&min=${options.minPrice || 0 }&max=${options.maxPrice || 999}`)
+    
   const handleOptions = (value, type) => {
     setOptions((prev)=>{
       return {
@@ -22,11 +26,23 @@ const List = () => {
       }
     })
   }
+  const handleSearch = () => {
+    reFetch()
+  }
 
-  console.log(location, data, date, options, 'destination', destination)
-  const handleNavigate = () => {
-    const id = location.pathname.split("/")[2];
-    navigate('./hotel', id)
+
+
+
+
+  console.log(location, data, 'destination', destination)
+  const handleNavigate = (id) => {
+    //const id = location.pathname.split("/")[2];
+    navigate('../hotel', {state:{ id}})
+    console.log('id', id)
+  }
+
+  const handleMinPrice = () => {
+
   }
   return ( <>
     <Navbar />
@@ -105,19 +121,22 @@ const List = () => {
               </label>
             </div>
             <div>
-              <button className="btn s__btn">Submit</button>
+              <button className="btn s__btn" onChange={()=>{handleSearch()}}>Submit</button>
             </div>
           </div>
         </div>
+
         <div className="explore__hotels">
           <h2 className="explore__title">Locarno: 201 properties found</h2>
           <div className="explore__title"></div>
-          <div className="explore__hotels-list">
+
+          {data && data.map(hotel => (
+            <div className="explore__hotels-list" key={hotel._id}>
             <div className="explore__img-container">
-              <img src="https://t-cf.bstatic.com/xdata/images/hotel/square200/156678874.webp?k=93a139bc44d05e3b570715b7f5fc41e8e3431553e54aec65554c94a5f894110e&o=&s=1" alt="Hotel_la_Palma" />
+              <img src={hotel.photos[0]} alt={hotel.name} />
             </div>
             <div className="explore__hotel-details">
-              <h3 className="explore__hotel-title">Hotel la Palma au LacOpens in new window</h3>
+              <h3 className="explore__hotel-title" onClick={()=>handleNavigate(hotel._id)}>{hotel.name}</h3>
               <span className="explore__hotel-stars"><BsStarFill/><BsStarFill/><BsStarFill/><BsStarFill/><BsStarHalf/></span>
               <div className="explore__hotel-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi dolor, deleniti omnis quibusdam inventore mollitia natus aut. Nesciunt, voluptate nisi?</div>
             </div>
@@ -126,56 +145,16 @@ const List = () => {
                 <div>
                   <div><strong>Excellent</strong></div>
                   <small>3,618 reviews</small>
+                  <p>Price: {hotel.cheapestPrice}</p>
                 </div>
-                <button className="btn score-btn">8.6</button>
+                <button className="btn score-btn">{hotel.rating}</button>
               </div>
               <button className="btn rating-btn">Show prices</button>
             </div>
-          </div>    
-          <div className="explore__hotels-list">
-            <div className="explore__img-container">
-              <img src="https://t-cf.bstatic.com/xdata/images/hotel/square200/156678874.webp?k=93a139bc44d05e3b570715b7f5fc41e8e3431553e54aec65554c94a5f894110e&o=&s=1" alt="Hotel_la_Palma" />
-            </div>
-            <div className="explore__hotel-details">
-              <h3 className="explore__hotel-title" onClick={handleNavigate}>
-                <Link >
-                  Hotel la Palma au LacOpens in new window
-                </Link>               
-                </h3>
-              <span className="explore__hotel-stars"><BsStarFill/><BsStarFill/><BsStarFill/><BsStarFill/><BsStarHalf/></span>
-              <div className="explore__hotel-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi dolor, deleniti omnis quibusdam inventore mollitia natus aut. Nesciunt, voluptate nisi?</div>
-            </div>
-            <div className="explore__hotel-raiting">
-              <div className="">
-                <div>
-                  <div><strong>Excellent</strong></div>
-                  <small>3,618 reviews</small>
-                </div>
-                <button className="btn score-btn">8.6</button>
-              </div>
-              <button className="btn rating-btn">Show prices</button>
-            </div>
-          </div>  
-          <div className="explore__hotels-list">
-            <div className="explore__img-container">
-              <img src="https://t-cf.bstatic.com/xdata/images/hotel/square200/156678874.webp?k=93a139bc44d05e3b570715b7f5fc41e8e3431553e54aec65554c94a5f894110e&o=&s=1" alt="Hotel_la_Palma" />
-            </div>
-            <div className="explore__hotel-details">
-              <h3 className="explore__hotel-title">Hotel la Palma au LacOpens in new window</h3>
-              <span className="explore__hotel-stars"><BsStarFill/><BsStarFill/><BsStarFill/><BsStarFill/><BsStarHalf/></span>
-              <div className="explore__hotel-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi dolor, deleniti omnis quibusdam inventore mollitia natus aut. Nesciunt, voluptate nisi?</div>
-            </div>
-            <div className="explore__hotel-raiting">
-              <div className="">
-                <div>
-                  <div><strong>Excellent</strong></div>
-                  <small>3,618 reviews</small>
-                </div>
-                <button className="btn score-btn">8.6</button>
-              </div>
-              <button className="btn rating-btn">Show prices</button>
-            </div>
-          </div>      
+          </div> 
+          ))}
+   
+     
         </div>
       </div>
     </div>

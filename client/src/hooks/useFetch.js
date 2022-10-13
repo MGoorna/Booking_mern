@@ -10,8 +10,15 @@ const useFetch = (url) => {
     const fetchData = async() => {
       setLoading(true)
       try{
-        const resp = await axios.get(url)
-        setData(resp.data)
+        const controller = new AbortController();
+
+        const resp = await axios.get(url, {
+          signal: controller.signal
+        }).then(function(response) {
+          setData(response.data)
+       });
+        //setData(resp.data)
+        controller.abort()
       }catch(err){
         setError(err)
       }

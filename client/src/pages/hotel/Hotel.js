@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
+import MailList from "../../components/mailList/MailList";
+import Footer from "../../components/footer/Footer";
 import { FaCity, FaTree, FaPaw, FcCheckmark, FaWifi, FaBath, FaSnowflake, FaParking } from "react-icons/fa";
 import { GiWashingMachine } from "react-icons/gi";
 import useFetch from "../../hooks/useFetch";
@@ -13,8 +15,9 @@ const Hotel = () => {
   const [id, setId] = useState(location.state.id);
 
   const { data, loading, error } = useFetch(`/hotel/find/${id}`)
-  console.log('data', data)
-  console.log('location',location)
+
+  console.log('data', data, 'location',location)
+  
 
   return ( <>
   <Navbar />
@@ -118,6 +121,8 @@ const Hotel = () => {
   ))
 
   }
+  <MailList />
+          <Footer />
   </> );
 }
  

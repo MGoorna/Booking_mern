@@ -14,6 +14,14 @@
 .n__logo{
   color: var(--text-secondary-color);
 }
+.n__user-details{
+  display: flex;
+  align-items: center;
+  gap: 10px;   
+}
+.n__user-details span{
+  cursor: pointer;  
+}
 .n__btn{
   margin-right: 10px;
   padding: 5px 10px;

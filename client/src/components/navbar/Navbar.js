@@ -8,11 +8,14 @@ const Navbar = () => {
   const {user, dispatch} = useContext(AuthContext)
   const navigate = useNavigate();
 
-  const handleClick = () =>{
+  const handleLogout = () =>{
     dispatch({type: "LOGOUT"})
   }
-  const handleNavigate = () => {
+  const handleLogin = () => {
     navigate('/login')
+  }
+  const handleSubmit = () => {
+    navigate('/submit')
   }
 
   return ( <>
@@ -23,12 +26,12 @@ const Navbar = () => {
         </Link>
         {user ? 
         (<div className="n__user-details"><span>{user.email}</span>
-          <span><IoMdLogOut size={26} onClick={handleClick}/></span>
+          <span><IoMdLogOut size={26} onClick={handleLogout}/></span>
         </div>) 
         :(
           <div className="n__login">
-            <button type='text' className="n__btn" onClick={handleNavigate}>Login</button>
-            <button type='text' className="n__btn">Register</button>
+            <button type='text' className="n__btn" onClick={handleLogin}>Login</button>
+            <button type='text' className="n__btn" onClick={handleSubmit}>Register</button>
           </div>
         )}
       </nav>

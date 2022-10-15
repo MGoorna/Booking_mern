@@ -15,7 +15,7 @@ const Navbar = () => {
     navigate('/login')
   }
   const handleSubmit = () => {
-    navigate('/submit')
+    navigate('/register')
   }
 
   return ( <>

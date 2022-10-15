@@ -3,11 +3,11 @@ import bcrypt from 'bcryptjs'
 
 
 export const register = async(req, res) => {
-  const saltRounds = 10;
-  const salt = bcrypt.genSaltSync(saltRounds);
-  const hash = bcrypt.hashSync(req.body.password, salt);
 
   try{
+    const saltRounds = 10;
+    const salt = bcrypt.genSaltSync(saltRounds);
+    const hash = bcrypt.hashSync(req.body.password, salt);
     const newUser = new User({
       userName: req.body.userName,
       email: req.body.email,
@@ -31,7 +31,7 @@ export const login = async(req, res) => {
     const isPasswordCorrect = bcrypt.compare(req.body.password, user.password);
     if(!isPasswordCorrect) return res.status(400).json('Wrong password or username')
     const {password, isAdmin, ...otherDetails} = user._doc
-    res.status(200).json(otherDetails)
+    res.status(200).json({details:{...otherDetails}, isAdmin})
   }
   catch(err){
     res.status(500).json(err)

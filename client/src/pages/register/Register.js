@@ -19,10 +19,14 @@ const Register = () => {
   const handleClick = async (e) => {
     e.preventDefault();
 
-      const resp = await axios.post('/auth/register', credentials) 
-      navigate('/login')
-
-
+      
+      try { 
+        await axios.post('/auth/register', credentials) 
+        navigate('/login')
+      } catch (err) {
+        console.log(err);
+      }
+    
   }
   return ( <>
     <div className='lContainer'>

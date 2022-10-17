@@ -10,6 +10,7 @@ const Navbar = () => {
 
   const handleLogout = () =>{
     dispatch({type: "LOGOUT"})
+    localStorage.removeItem('user')
   }
   const handleLogin = () => {
     navigate('/login')

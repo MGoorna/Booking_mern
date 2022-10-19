@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useState, useContext } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import MailList from "../../components/mailList/MailList";
@@ -7,17 +7,30 @@ import Footer from "../../components/footer/Footer";
 import { FaCity, FaTree, FaPaw, FcCheckmark, FaWifi, FaBath, FaSnowflake, FaParking } from "react-icons/fa";
 import { GiWashingMachine } from "react-icons/gi";
 import useFetch from "../../hooks/useFetch";
+import { AuthContext } from "../../context/AuthContext";
 import "./hotel.css";
+import Reserve from "../../components/reserve/Reserve";
 
 const Hotel = () => {
   //const { data, loading, error } = useFetch(`/hotel/find/63443252900c165c1d798f43`);
+  const user = useContext(AuthContext);
   const location = useLocation();
+  const navigate = useNavigate();
   const [id, setId] = useState(location.state.id);
+  const [openModal, setOpenModal] = useState(false);
 
   const { data, loading, error } = useFetch(`/hotel/find/${id}`)
 
   console.log('data', data, 'location',location)
-  
+  const handleReserve = () => {
+    if(user){
+      setOpenModal(true)
+      
+    }else{
+      navigate('/login')
+    }
+  }
+  console.log(openModal)
 
   return ( <>
   <Navbar />
@@ -112,11 +125,16 @@ const Hotel = () => {
           {data.cheapestPrice} Fch/per night
           <p>Perfect for a 10 night</p>
           <p><FaParking size={12} />fsdfs sdfsfs</p>
-          <button className="btn hotel__btn">Reserve</button>
+          <button 
+          className="btn hotel__btn"
+          onClick={handleReserve}>Reserve</button>
           <button className="btn hotel__btn btn-revers">Save the property</button>
         </div>
       </div>
     </div>
+    {openModal && (
+      <Reserve setOpenModal={setOpenModal}/>
+    )}
   </div>
   ))
 

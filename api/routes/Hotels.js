@@ -6,7 +6,8 @@ import { getHotel,
   updateHotel, 
   getHotelByCity, 
   getHotelByType,
-  getHotelByCitySingle } from '../controllers/hotel.js'
+  getHotelByCitySingle,
+  getHotelRooms } from '../controllers/hotel.js'
 
 const router = express.Router()
 
@@ -19,6 +20,8 @@ router.get('/findByCitySingle', getHotelByCitySingle)
 
 router.get('/findByCity', getHotelByCity)
 router.get('/type/findByType', getHotelByType)
+router.get('/room/:id', getHotelRooms)
+
 
 //CREATE
 router.post('/', createHotel)

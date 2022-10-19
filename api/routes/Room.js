@@ -1,13 +1,23 @@
 import express from 'express'
+import Hotel from '../models/Hotel.js';
 import Room from '../models/Room.js'
 
 const router = express.Router();
 
 //CREATE
-router.post('/', async(req, res) => {
+router.post('/:hotelid', async(req, res) => {
+  const hotelId = req.params.hotelid;
  const newRoom = new Room(req.body)
+
  try{
   const savedRoom = await newRoom.save()
+  try {
+    await Hotel.findByIdAndUpdate(hotelId,{
+      $push: { rooms: savedRoom._id }
+    })
+  } catch (err) {
+    res.status(400).json(err)
+  }
   res.status(201).json(savedRoom)
  }catch(err){
   res.status(500).json(err)

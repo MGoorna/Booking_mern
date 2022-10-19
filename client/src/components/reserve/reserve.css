@@ -1,0 +1,41 @@
+.reserve{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  text-align: left;
+}
+.reserve__container{
+  width: 50vw;
+  height: 50vw;
+  transform: translate(50%,25%);
+  background: var(--white);
+}
+.reserve__close{
+  margin: 20px;
+  text-align: right;
+}
+.reserve__close-btn{
+  display: inline-block;
+  position: relative;
+  width: 24px;
+  height: 24px;
+  transform: translate(-75%,85%);
+}
+.reserve__close-btn:before,
+.reserve__close-btn:after{
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  background: var(--secondary-color);
+  transform-origin: center;
+}
+.reserve__close-btn:before{
+  transform: rotate(45deg);
+}
+.reserve__close-btn:after{
+  transform: rotate(135deg);
+}

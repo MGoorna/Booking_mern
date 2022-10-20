@@ -133,7 +133,7 @@ const Hotel = () => {
       </div>
     </div>
     {openModal && (
-      <Reserve setOpenModal={setOpenModal}/>
+      <Reserve setOpenModal={setOpenModal} hotelId={id}/>
     )}
   </div>
   ))

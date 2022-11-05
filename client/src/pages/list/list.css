@@ -1,6 +1,3 @@
-:root{
-  
-}
 .explore{}
 .explore__container{
   margin: 0 auto;
@@ -12,7 +9,7 @@
   flex-direction: row;
   gap: 20px; 
 }
-.explore__title{}
+
 /* search */
 .hotels__search{
  flex: 1;

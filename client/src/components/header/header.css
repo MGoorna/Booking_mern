@@ -17,6 +17,7 @@
   max-width: 1124px;
   color: white;
   position: relative;
+  z-index: 3;
 }
 .header__container h1, p{ 
   text-align: left;

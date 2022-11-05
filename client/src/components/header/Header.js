@@ -2,17 +2,19 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaHotel, FaBed, FaCar, FaPlane, FaCalendarDay, FaUserAlt } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
-import { format } from 'date-fns';
+import { format, isTomorrow } from 'date-fns';
 import './header.css';
 
 
 const Header = ({ type }) => {
+  const today = new Date();
+  let tomorow = new Date();
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: today,
+      endDate: tomorow.setDate(today.getDate()+1),
       key: 'selection'
     }
   ]);
@@ -25,6 +27,7 @@ const Header = ({ type }) => {
   });
 
   const handleStepper = (name, operation) => {
+    console.log(name, operation)
     setOptions(prev => {
       return {
         ...prev, [name]: operation === 'increase' ? options[name]+1 : options[name]-1
@@ -35,7 +38,11 @@ const Header = ({ type }) => {
   const navigate = useNavigate();
 
   const handleSearch = () =>{
-    navigate('/list', {state:{ destination, date, options }});   
+    console.log(date, 'option', options )
+    if(destination !== ''){
+      navigate('/list', {state:{ destination, date, options }}); 
+    }
+      
   }
   
   return ( <>
@@ -120,11 +127,11 @@ const Header = ({ type }) => {
                   <button 
                     className="hs_stepper_counter" 
                     disabled={options.adult === 0}
-                    onChange={()=>handleStepper('adult','decrease')}>-</button>
+                    onClick={()=>handleStepper('adult','decrease')}>-</button>
                   <span>{options.adult}</span>
                   <button 
                     className="hs_stepper_counter" 
-                    onChange={()=>handleStepper('adult','increase')}>+</button>
+                    onClick={()=>handleStepper('adult','increase')}>+</button>
                 </div>
               </div>
               <div className="hs__stepper">
@@ -133,11 +140,11 @@ const Header = ({ type }) => {
                   <button 
                     className="hs_stepper_counter" 
                     disabled={options.children === 0}
-                    onChange={()=>handleStepper('children','decrease')}>-</button>
+                    onClick={()=>handleStepper('children','decrease')}>-</button>
                   <span>{options.children}</span>
                   <button 
                     className="hs_stepper_counter" 
-                    onChange={()=>handleStepper('children','increase')}>+</button>
+                    onClick={()=>handleStepper('children','increase')}>+</button>
                 </div>
               </div>
               <div className="hs__stepper">
@@ -146,11 +153,11 @@ const Header = ({ type }) => {
                   <button 
                     className="hs_stepper_counter" 
                     disabled={options.room === 0}
-                    onChange={()=>handleStepper('room','decrease')}>-</button>
+                    onClick={()=>handleStepper('room','decrease')}>-</button>
                   <span>{options.room}</span>
                   <button 
                     className="hs_stepper_counter" 
-                    onChange={()=>handleStepper('room','increase')}>+</button>
+                    onClick={()=>handleStepper('room','increase')}>+</button>
                 </div>
               </div>
             </div>}

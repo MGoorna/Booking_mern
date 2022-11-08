@@ -1,11 +1,14 @@
 .reserve{
-  position: absolute;
+  position: fixed;
+  display: block;
+  height: -webkit-fill-available;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0,0,0,0.3);
   text-align: left;
+  z-index: 1001;
 }
 .reserve__container{
   width: 50vw;

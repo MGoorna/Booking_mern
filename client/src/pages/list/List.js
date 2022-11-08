@@ -4,6 +4,8 @@ import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import useFetch from "../../hooks/useFetch";
 import { BsStarHalf, BsStarFill } from "react-icons/bs";
+import { DateRange } from 'react-date-range';
+import { format } from 'date-fns';
 import "./list.css";
 
 const List = () => {
@@ -14,6 +16,7 @@ const List = () => {
   const [options, setOptions] = useState(location.state.options);
   const [minPrice, setMinPrice] = useState(undefined);
   const [maxPrice, setMaxPrice] = useState(undefined);
+  const [openDate, setOpenDate] = useState(false);
 
   const { data, error, loading, reFetch } = useFetch(
     `/hotel/findByCitySingle?city=${destination}&min=${options.minPrice || 0 }&max=${options.maxPrice || 999}`)
@@ -53,12 +56,19 @@ const List = () => {
                 value={destination} 
                 onChange={(e)=>setDestination(e.target.value)}/>
             </div>
-            <div>
-              <label htmlFor="">Check-in date</label>
-              <input type="text" 
-                placeholder="hotel-name" 
-                value={date}
-                onChange={(e)=>setDate(e.target.value)}/>
+            <div className="explore__search-dates">
+              <label>Check-in Date</label>
+              <div onClick={() => setOpenDate(!openDate)}>{`${format(
+                date[0].startDate,
+                "MM/dd/yyyy"
+              )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</div>
+              {openDate && (
+                <DateRange
+                  onChange={(item) => setDate([item.selection])}
+                  minDate={new Date()}
+                  ranges={date}
+                />
+              )}
             </div>
             <div>
               <label htmlFor="">9-night stay</label>
@@ -120,7 +130,7 @@ const List = () => {
         </div>
 
         <div className="explore__hotels">
-          <h2 className="explore__title">Locarno: 201 properties found</h2>
+          <h2 className="explore__title">{destination}: {data.length} {data.length === 1 ? 'property':'properties'} found</h2>
           <div className="explore__title"></div>
 
           {data && data.map(hotel => (
@@ -129,16 +139,17 @@ const List = () => {
               <img src={hotel.photos[0]} alt={hotel.name} />
             </div>
             <div className="explore__hotel-details">
-              <h3 className="explore__hotel-title" onClick={()=>handleNavigate(hotel._id)}>{hotel.name}</h3>
+              <h3 className="explore__hotel-title" onClick={()=>handleNavigate(hotel._id)}>{hotel.name}</h3>             
               <span className="explore__hotel-stars"><BsStarFill/><BsStarFill/><BsStarFill/><BsStarFill/><BsStarHalf/></span>
-              <div className="explore__hotel-description">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi dolor, deleniti omnis quibusdam inventore mollitia natus aut. Nesciunt, voluptate nisi?</div>
+              <p className="explore__hotel-distance"><small>{hotel.distance}m from center</small></p>
+              <div className="explore__hotel-description">{hotel.desc}</div>
             </div>
             <div className="explore__hotel-raiting">
               <div className="">
                 <div>
                   <div><strong>Excellent</strong></div>
-                  <small>3,618 reviews</small>
-                  <p>Price: {hotel.cheapestPrice}</p>
+                  <small>{hotel.rating} reviews</small>
+                  <p><strong>${hotel.cheapestPrice}</strong></p>
                 </div>
                 <button className="btn score-btn">{hotel.rating}</button>
               </div>

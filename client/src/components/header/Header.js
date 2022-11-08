@@ -2,19 +2,19 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { FaHotel, FaBed, FaCar, FaPlane, FaCalendarDay, FaUserAlt } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
-import { format, isTomorrow } from 'date-fns';
+import { format } from 'date-fns';
 import './header.css';
 
 
 const Header = ({ type }) => {
   const today = new Date();
-  let tomorow = new Date();
+  //let tomorow = new Date();
   const [destination, setDestination] = useState("");
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
       startDate: today,
-      endDate: tomorow.setDate(today.getDate()+1),
+      endDate: today, //tomorow.setDate(today.getDate()+1),
       key: 'selection'
     }
   ]);
@@ -27,7 +27,7 @@ const Header = ({ type }) => {
   });
 
   const handleStepper = (name, operation) => {
-    console.log(name, operation)
+    //console.log(name, operation)
     setOptions(prev => {
       return {
         ...prev, [name]: operation === 'increase' ? options[name]+1 : options[name]-1
@@ -97,7 +97,8 @@ const Header = ({ type }) => {
               editableDateInputs={true}
               onChange={item => setDate([item.selection])}
               moveRangeOnFirstSelection={false}
-              ranges={date}            
+              ranges={date} 
+              minDate={new Date()}           
             />}
             </span>
           </div>

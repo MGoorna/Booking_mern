@@ -34,8 +34,25 @@
   min-height: 1px !important;
   //appearance: none !important;
 }
+.explore__search label{
+  font-size: 12px;
+}
+.explore__search-dates{
+  display: flex;
+  flex-direction: column;
+}
+.explore__search-dates>div{
+  padding: 12px 8px;
+  width: 100%;
+  min-height: 1px !important;
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  background-color: white;
+  border: none !important;
+  cursor: pointer;
+}
 .explore__options{
-  
   display: flex;
   flex-direction: column;
   gap: 5px;
@@ -84,6 +101,10 @@
   color: var(--link-color);
   cursor: pointer;
 }
+.explore__hotel-distance{ line-height: 1px;}
+.explore__hotel-description{
+
+}
 .explore__hotel-raiting{
   flex: 1;
   display: flex;
@@ -107,3 +128,4 @@
   padding: 8px 14px;
   border: none;
 }
+

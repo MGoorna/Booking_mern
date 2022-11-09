@@ -15,8 +15,9 @@ const Hotel = () => {
   //const { data, loading, error } = useFetch(`/hotel/find/63443252900c165c1d798f43`);
   const user = useContext(AuthContext);
   const location = useLocation();
+  const id = location.pathname.split("/")[2];
   const navigate = useNavigate();
-  const [id, setId] = useState(location.state.id);
+  //const [id, setId] = useState(location.state.id);
   const [openModal, setOpenModal] = useState(false);
 
   const { data, loading, error } = useFetch(`/hotel/find/${id}`)

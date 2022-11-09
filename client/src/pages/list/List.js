@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import useFetch from "../../hooks/useFetch";
@@ -10,7 +10,6 @@ import "./list.css";
 
 const List = () => {
   const location = useLocation();
-  const navigate = useNavigate();
   const [destination, setDestination] = useState(location.state.destination)
   const [date, setDate] = useState(location.state.date)
   const [options, setOptions] = useState(location.state.options);
@@ -33,12 +32,6 @@ const List = () => {
   }
 
   console.log(location, data, 'destination', destination)
-
-  const handleNavigate = (id) => {
-    //const id = location.pathname.split("/")[2];
-    navigate('../hotel', {state:{ id}})
-    console.log('id', id)
-  }
 
   return ( <>
     <Navbar />
@@ -139,17 +132,21 @@ const List = () => {
               <img src={hotel.photos[0]} alt={hotel.name} />
             </div>
             <div className="explore__hotel-details">
-              <h3 className="explore__hotel-title" onClick={()=>handleNavigate(hotel._id)}>{hotel.name}</h3>             
+              <Link to={`/hotel/${hotel._id}`}>
+                <h3 className="explore__hotel-title">
+                  {hotel.name}
+                </h3>
+              </Link>
+             
               <span className="explore__hotel-stars"><BsStarFill/><BsStarFill/><BsStarFill/><BsStarFill/><BsStarHalf/></span>
               <p className="explore__hotel-distance"><small>{hotel.distance}m from center</small></p>
-              <div className="explore__hotel-description">{hotel.desc}</div>
+              <div className="explore__hotel-description tuncate">{hotel.desc}</div>
             </div>
             <div className="explore__hotel-raiting">
               <div className="">
                 <div>
-                  <div><strong>Excellent</strong></div>
+                  <div><strong>${hotel.cheapestPrice}</strong></div>
                   <small>{hotel.rating} reviews</small>
-                  <p><strong>${hotel.cheapestPrice}</strong></p>
                 </div>
                 <button className="btn score-btn">{hotel.rating}</button>
               </div>

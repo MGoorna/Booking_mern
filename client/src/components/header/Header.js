@@ -9,7 +9,7 @@ import './header.css';
 const Header = ({ type }) => {
   const today = new Date();
   //let tomorow = new Date();
-  const [destination, setDestination] = useState("");
+  const [destination, setDestination] = useState("zermatt");
   const [openDate, setOpenDate] = useState(false);
   const [date, setDate] = useState([
     {
@@ -80,6 +80,7 @@ const Header = ({ type }) => {
               type="text" 
               placeholder="Where are you going"
               className='hs__input'
+              value={destination}
               onChange={(e) => setDestination(e.target.value)}
               />
           </div>

@@ -19,7 +19,7 @@ function App() {
           <Route element={<Login />} path='/login' />
           <Route element={<Register />} path='/register' />
           <Route element={<List />} path='/list' />
-          <Route element={<Hotel />} path='/hotel' />
+          <Route element={<Hotel />} path='/hotel/:id' />
         </Routes>
       </BrowserRouter>
     </div>

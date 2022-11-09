@@ -123,9 +123,18 @@
 .score-btn{
   padding: 0px 4px;
   border: none;
+  width: 35px;
 }
 .rating-btn{
   padding: 8px 14px;
   border: none;
+}
+.tuncate{
+  width: 285px;
+  height: 83px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: break-spaces;
 }
 

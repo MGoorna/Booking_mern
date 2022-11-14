@@ -25,9 +25,46 @@
   flex-wrap: wrap;
   gap: 10px;
 }
+.hotel__gallery{
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  grid-gap: 1rem;
+  //grid-auto-flow: dense;
+}
+.hotel__gallery-item {
+  border: 3px solid white;
+  padding: 1ch 1rem;
+  position: relative;
+  overflow: hidden;
+}
+.hotel__gallery img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.horizontal {
+  grid-column: span 2;
+}
+.vertical {
+  grid-row: span 2;
+}
+
+
+
 .hotel__img{
   max-height: 250px;
   flex: auto;
+}
+.hotel__photo-grid-thumbs{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.hotel__photo-grid-thumbs img{
+  flex: 1;
 }
 /* properties */
 .hotel__property-highlights{

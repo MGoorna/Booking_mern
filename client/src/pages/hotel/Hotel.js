@@ -22,7 +22,7 @@ const Hotel = () => {
 
   const { data, loading, error } = useFetch(`/hotel/find/${id}`)
 
-  console.log('data', data, 'location',location)
+  console.log('data', data && data.photos)
   const handleReserve = () => {
     if(user){
       setOpenModal(true)
@@ -47,9 +47,39 @@ const Hotel = () => {
       </div>
       <div className="hotel__images">
         <div className="hotel__img-wrapper">
-        {data && data.photos && data.photos.map(img=>(
-            <img className="hotel__img" src={img} alt={data.name} key={img}/>
-        ))} 
+
+        <div>
+        <div >
+        {data.photos && (
+            <div className="hotel__gallery">
+              <div className="hotel__gallery-item ">
+                <img className="hotel__img" src={data.photos[0]} alt={data.name} />
+                
+              </div>
+              <div className="hotel__gallery-item ">
+                <img className="hotel__img" src={data.photos[1]} alt={data.name} />
+              </div>
+              <div className="hotel__gallery-item ">
+                <img className="hotel__img" src={data.photos[2]} alt={data.name} />
+              </div>
+            </div>
+          )}
+
+          </div>
+
+
+
+          <div className="hotel__photo-grid-thumbs">
+          {data && data.photos && data.photos.map((img, index) => {
+            if(index > 2 && index < 8){ 
+              return <img className="hotel__img" src={img} alt={data.name} key={img}/>
+            }
+            
+          })} 
+
+          </div>
+        </div>
+
         </div>
       </div>
       <div className="hotel__property-highlights">
@@ -141,7 +171,7 @@ const Hotel = () => {
 
   }
   <MailList />
-          <Footer />
+  <Footer />
   </> );
 }
  

@@ -28,9 +28,12 @@
 .hotel__gallery{
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
+  grid-template-columns: 1fr 1fr 1fr;
+  //grid-template-columns: repeat(auto-fit, minmax(95px, 1fr));
   grid-gap: 1rem;
   //grid-auto-flow: dense;
+  grid-template-rows: 180px;
+  justify-items: stretch;
 }
 .hotel__gallery-item {
   border: 3px solid white;
@@ -62,6 +65,7 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .hotel__photo-grid-thumbs img{
   flex: 1;

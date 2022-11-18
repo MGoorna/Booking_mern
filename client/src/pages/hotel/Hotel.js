@@ -49,19 +49,21 @@ const Hotel = () => {
         <div className="hotel__img-wrapper">
 
         <div>
-        <div >
+        <div>
         {data.photos && (
             <div className="hotel__gallery">
               <div className="hotel__gallery-item ">
-                <img className="hotel__img" src={data.photos[0]} alt={data.name} />
-                
+                <img className="hotel__img" src={data.photos[0]} alt={data.name} />               
               </div>
-              <div className="hotel__gallery-item ">
-                <img className="hotel__img" src={data.photos[1]} alt={data.name} />
+              <div className="">
+                <div className="">
+                  <img className="hotel__img" src={data.photos[1]} alt={data.name} />
+                </div>
+                <div className="">
+                  <img className="hotel__img" src={data.photos[2]} alt={data.name} />
+                </div>
               </div>
-              <div className="hotel__gallery-item ">
-                <img className="hotel__img" src={data.photos[2]} alt={data.name} />
-              </div>
+
             </div>
           )}
 

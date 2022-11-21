@@ -8,7 +8,7 @@ import Reserve from "../../components/reserve/Reserve";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
 import { FaCity, FaTree, FaPaw, FaWifi, FaSwimmingPool, FaParking } from "react-icons/fa";
-import { GiWashingMachine } from "react-icons/gi";
+import { GiWashingMachine, GiMountaintop } from "react-icons/gi";
 import { BsFillHouseFill } from "react-icons/bs";
 import { CgSwiss } from "react-icons/cg";
 import "./hotel.css";
@@ -157,10 +157,23 @@ const Hotel = () => {
         </div>
         <div className="hotel__price">
           <h3>Property Highlights</h3>
-          {data.cheapestPrice} Fch/per night
-          <span><FaParking size={12} color={'green'}/> Free parking</span>
-          <h4>Breakfast Info</h4> 
-          <span>Buffet</span>
+          <div className="ph-section">
+            <h4>Perfect for a 5-night stay!</h4>
+            {data.cheapestPrice} Fch/per night
+            <span><FaParking size={12} color={'green'}/> Free parking</span>
+          </div>
+          <div className="ph-section">
+            <h4>Breakfast Info</h4> 
+            <span>Continental, Buffet</span>
+          </div>
+          <div className="ph-section">
+            <h4>Rooms with:</h4>
+            <ul>
+              <li><FaCity size={12} color={'green'}/> City view</li>
+              <li><GiMountaintop size={12} color={'green'}/> Mountain view</li>
+            </ul>
+          </div>
+
           <button 
           className="btn hotel__btn"
           onClick={handleReserve}>Reserve</button>

@@ -127,6 +127,9 @@
   flex-direction: column;
   gap: 10px;
 }
+.ph-section{
+  margin-bottom: var(--bui_spacing_1x);
+}    
 .hotel__btn{
   padding: 12px;
 }

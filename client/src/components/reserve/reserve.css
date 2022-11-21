@@ -9,12 +9,15 @@
   background: rgba(0,0,0,0.3);
   text-align: left;
   z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .reserve__container{
+  width: auto;
+  height: auto;
   max-width: 50vw;
-  max-height: 50vw;
   padding: 18px 30px 50px;
-  transform: translate(50%,25%);
   background: var(--white);
 }
 .reserve__close{
@@ -46,10 +49,18 @@
 .reverse__room-container{
   margin-bottom: var(--bui_spacing_4x);
   display: flex;
-  justify-content: space-between;
   align-items: center; 
+  gap: var(--bui_spacing_4x);
 }
+.reverse__room ul{ 
+  display: flex;
+  gap: var(--bui_spacing_2x);
+ }
 .reverse__room ul li{
-  display: inline-block;
-  margin-right: var(--bui_spacing_1x);;
+  display: flex;
+  flex-direction: column;
+  gap: var(--bui_spacing_1x);
+}
+.reverse__room ul li label{
+  color: var(--text-primary-color);
 }

@@ -42,14 +42,14 @@ const Reserve = ({ setOpenModal, hotelId }) => {
                 <ul>
                 {room.roomNumbers.map(no=>(
                   <li>
-                    <input 
+                  <label htmlFor={no.number}><small>{no.number}</small></label>
+                  <input 
                         type="checkbox" 
-                        classname="fullwidth"
                         id={no.number} 
                         value={no._id} 
                         onChange={handleCheck}
                         />
-                    <label htmlFor={no.number}>{no.number}</label>
+                    
                   </li>
                 ))} 
                 </ul>            

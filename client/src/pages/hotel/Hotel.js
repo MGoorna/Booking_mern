@@ -6,6 +6,8 @@ import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 import { FaCity, FaTree, FaPaw, FcCheckmark, FaWifi, FaBath, FaSnowflake, FaParking } from "react-icons/fa";
 import { GiWashingMachine } from "react-icons/gi";
+import { BsFillHouseFill } from "react-icons/bs";
+import { CgSwiss } from "react-icons/cg";
 import useFetch from "../../hooks/useFetch";
 import { AuthContext } from "../../context/AuthContext";
 import "./hotel.css";
@@ -47,26 +49,33 @@ const Hotel = () => {
       </div>
       <div className="hotel__images">
         <div className="hotel__img-wrapper">
-
         <div>
-        <div>
-        {data.photos && (
+          <div>
+          {data.photos && (
             <div className="hotel__gallery">
-              <div className="hotel__gallery-item ">
-                <img className="hotel__img" src={data.photos[0]} alt={data.name} />               
-              </div>
-              <div className="">
-                <div className="">
-                  <img className="hotel__img" src={data.photos[1]} alt={data.name} />
-                </div>
-                <div className="">
-                  <img className="hotel__img" src={data.photos[2]} alt={data.name} />
-                </div>
-              </div>
+              <div className="hotel__gallery-item">
+                <img className="hotel__gallery-img" src={data.photos[0]} alt={data.name} />  
+                <div className="hotel__gallery-info">
+                  <div className="hotel__rate">
+                    <span>Wonderful</span>
+                    <span>22 reviews</span>
+                    
+                  </div>
+                  <div className="hotel__gallery-user-desc-rate">
+                    <div>The unit was great - clean and comfortable. Plenty of towels. Coffee- there is a keurig. Full fridge. Location was great too. Parking right across street. Nice pools. Dionne…</div>
+                    <div>Noah Müller <CgSwiss size={16} color={'red'} /> Switzerland</div>
+                  </div>
 
+                </div>             
+              </div>
+              <div className="hotel__gallery-item">
+                <img className="hotel__gallery-img" src={data.photos[1]} alt={data.name} />
+              </div>
+              <div className="hotel__gallery-item">
+                <img className="hotel__gallery-img" src={data.photos[2]} alt={data.name} />
+              </div>
             </div>
           )}
-
           </div>
 
 
@@ -78,7 +87,6 @@ const Hotel = () => {
             }
             
           })} 
-
           </div>
         </div>
 
@@ -95,10 +103,10 @@ const Hotel = () => {
         </div>
         <div>        
           <div className="hotel__property-icon">
-            <FaTree size={32}/>
+            <BsFillHouseFill size={32}/>
           </div>
           <div className="hotel__property-text">
-          Garden
+          93 m2 size
         </div></div>
         <div>
           <div className="hotel__property-icon">
@@ -125,10 +133,10 @@ const Hotel = () => {
         </div></div>
         <div>
           <div className="hotel__property-icon">
-            <FaPaw size={32} />
+            <GiWashingMachine size={32} />
           </div>
           <div className="hotel__property-text">
-            <span>Pet allowed</span>
+            <span>Washing machine</span>
           </div>
         </div>
         <div>

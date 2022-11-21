@@ -18,6 +18,9 @@ const Reserve = ({ setOpenModal, hotelId }) => {
       : selectedRooms.filter(item => item !== val))
     console.log(e, checked, 'val', val, 'selectedRooms', selectedRooms)
   }
+  const handleReserve = () => {
+
+  }
   return ( <>
   <div className="reserve">
     <div className="reserve__container">
@@ -25,32 +28,37 @@ const Reserve = ({ setOpenModal, hotelId }) => {
         <div className="reserve__close-btn" onClick={handleClose}></div>
       </div>
       <label htmlFor="">
-        Select your room
+        <h3>Select your room</h3>
         <ul>
           {data && data.map(room => (
             <li className="reverse__room" key={room._id}>
-              <label htmlFor="">
-                <span className="reverse__title">{room.title} </span>
-                <span className="reserve__desc">{room.desc} </span>
-                <span><small>Max people: <b>{room.maxPeople}</b> </small></span>
-                <span>Price: {room.price}$ </span>
-                
+            <h4 className="reverse__title">{room.title} </h4>
+              <label className="reverse__room-container">
+                <div>                 
+                  <span className="reserve__desc">{room.desc}, </span>
+                  <span>Max people: <b>{room.maxPeople}, </b></span>
+                  <span>Price: {room.price}$ </span>
+                </div>
+                <ul>
                 {room.roomNumbers.map(no=>(
-                  <div>
-                    <label htmlFor={no.number}>{no.number}
-                      <input type="checkbox" id={no.number} value={no._id} onChange={handleCheck}/>
-                    </label>
-                  </div>
-                ))}
-                
-
-                            
+                  <li>
+                    <input 
+                        type="checkbox" 
+                        classname="fullwidth"
+                        id={no.number} 
+                        value={no._id} 
+                        onChange={handleCheck}
+                        />
+                    <label htmlFor={no.number}>{no.number}</label>
+                  </li>
+                ))} 
+                </ul>            
               </label> 
             </li>
           ))}
-
         </ul>
       </label>
+      <button className="btn fullwidth" onClick={handleReserve}>Reserve Now!</button>
     </div>
   </div>
   </> );

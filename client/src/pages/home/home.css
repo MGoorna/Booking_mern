@@ -1,8 +1,8 @@
 :root {
   --bui_spacing_1x: 4px;
   --bui_spacing_2x: 8px;
-  --bui_spacing_3x: 42px;
-  --bui_spacing_4x: 16px;
+  --bui_spacing_3x: 16px;
+  --bui_spacing_4x: 32px;
   --primary-color: #003570;
   --secondary-color: #0071c2;
   --white: white;
@@ -41,6 +41,9 @@
   position: absolute;
   right: 0;
   top: 0;
+}
+.fullwidth{
+  width: 100%;
 }
 .home{
   padding-top: var(--explore_padding-inline);

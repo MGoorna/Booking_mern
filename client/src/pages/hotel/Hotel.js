@@ -4,14 +4,15 @@ import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
-import { FaCity, FaTree, FaPaw, FcCheckmark, FaWifi, FaBath, FaSnowflake, FaParking } from "react-icons/fa";
+import Reserve from "../../components/reserve/Reserve";
+import useFetch from "../../hooks/useFetch";
+import { AuthContext } from "../../context/AuthContext";
+import { FaCity, FaTree, FaPaw, FaWifi, FaSwimmingPool, FaParking } from "react-icons/fa";
 import { GiWashingMachine } from "react-icons/gi";
 import { BsFillHouseFill } from "react-icons/bs";
 import { CgSwiss } from "react-icons/cg";
-import useFetch from "../../hooks/useFetch";
-import { AuthContext } from "../../context/AuthContext";
 import "./hotel.css";
-import Reserve from "../../components/reserve/Reserve";
+
 
 const Hotel = () => {
   //const { data, loading, error } = useFetch(`/hotel/find/63443252900c165c1d798f43`);
@@ -21,7 +22,6 @@ const Hotel = () => {
   const navigate = useNavigate();
   //const [id, setId] = useState(location.state.id);
   const [openModal, setOpenModal] = useState(false);
-
   const { data, loading, error } = useFetch(`/hotel/find/${id}`)
 
   console.log('data', data && data.photos)
@@ -33,7 +33,6 @@ const Hotel = () => {
       navigate('/login')
     }
   }
-  console.log(openModal)
 
   return ( <>
   <Navbar />
@@ -58,14 +57,12 @@ const Hotel = () => {
                 <div className="hotel__gallery-info">
                   <div className="hotel__rate">
                     <span>Wonderful</span>
-                    <span>22 reviews</span>
-                    
+                    <span>22 reviews</span>                   
                   </div>
                   <div className="hotel__gallery-user-desc-rate">
                     <div>The unit was great - clean and comfortable. Plenty of towels. Coffee- there is a keurig. Full fridge. Location was great too. Parking right across street. Nice pools. Dionne…</div>
                     <div>Noah Müller <CgSwiss size={16} color={'red'} /> Switzerland</div>
                   </div>
-
                 </div>             
               </div>
               <div className="hotel__gallery-item">
@@ -77,9 +74,6 @@ const Hotel = () => {
             </div>
           )}
           </div>
-
-
-
           <div className="hotel__photo-grid-thumbs">
           {data && data.photos && data.photos.map((img, index) => {
             if(index > 2 && index < 8){ 
@@ -89,7 +83,6 @@ const Hotel = () => {
           })} 
           </div>
         </div>
-
         </div>
       </div>
       <div className="hotel__property-highlights">
@@ -141,10 +134,10 @@ const Hotel = () => {
         </div>
         <div>
           <div className="hotel__property-icon">
-            <FaWifi size={32} />
+            <FaSwimmingPool size={32} />
           </div>
           <div className="hotel__property-text">
-            Free WiFi
+            Swimming pool
           </div>
         </div>
       </div>
@@ -163,9 +156,11 @@ const Hotel = () => {
           <p>This is our guests' favorite part of Locarno, according to independent reviews.</p>
         </div>
         <div className="hotel__price">
+          <h3>Property Highlights</h3>
           {data.cheapestPrice} Fch/per night
-          <p>Perfect for a 10 night</p>
-          <p><FaParking size={12} />fsdfs sdfsfs</p>
+          <span><FaParking size={12} color={'green'}/> Free parking</span>
+          <h4>Breakfast Info</h4> 
+          <span>Buffet</span>
           <button 
           className="btn hotel__btn"
           onClick={handleReserve}>Reserve</button>

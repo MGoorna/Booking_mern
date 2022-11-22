@@ -3,9 +3,9 @@ import useFetch from '../../hooks/useFetch'
 import './reserve.css'
 
 const Reserve = ({ setOpenModal, hotelId }) => {
-  const [selectedRooms, setSelectedRooms] = useState('')
+  const [selectedRooms, setSelectedRooms] = useState([])
   const {data, error, loading} = useFetch(`/hotel/room/${hotelId}`)
-  console.log(data)
+  console.log(data, selectedRooms)
 
   const handleClose = () => {
     setOpenModal(false)
@@ -28,16 +28,16 @@ const Reserve = ({ setOpenModal, hotelId }) => {
         <div className="reserve__close-btn" onClick={handleClose}></div>
       </div>
       <label htmlFor="">
-        <h3>Select your room</h3>
+        <h3>Select your rooms:</h3>
         <ul>
           {data && data.map(room => (
             <li className="reverse__room" key={room._id}>
             <h4 className="reverse__title">{room.title} </h4>
               <label className="reverse__room-container">
                 <div>                 
-                  <span className="reserve__desc">{room.desc}, </span>
-                  <span>Max people: <b>{room.maxPeople}, </b></span>
+                  <span className="reserve__desc">{room.desc}, </span>           
                   <span>Price: {room.price}$ </span>
+                  <div><small>Max people: <b>{room.maxPeople}</b></small></div>
                 </div>
                 <ul>
                 {room.roomNumbers.map(no=>(
@@ -58,7 +58,12 @@ const Reserve = ({ setOpenModal, hotelId }) => {
           ))}
         </ul>
       </label>
-      <button className="btn fullwidth" onClick={handleReserve}>Reserve Now!</button>
+      <button 
+      className="btn fullwidth" 
+      onClick={handleReserve}
+      disabled={!selectedRooms.length}
+      >
+      Reserve Now!</button>
     </div>
   </div>
   </> );

@@ -14,11 +14,15 @@
   justify-content: center;
 }
 .reserve__container{
+  min-width: 400px;
   width: auto;
   height: auto;
   max-width: 50vw;
   padding: 18px 30px 50px;
   background: var(--white);
+}
+.reverse__container ul{ 
+  margin: 0 0 0 var(--bui_spacing_2x);
 }
 .reserve__close{
   text-align: right;
@@ -49,13 +53,14 @@
 .reverse__room-container{
   margin-bottom: var(--bui_spacing_4x);
   display: flex;
+  justify-content: space-between;
   align-items: center; 
   gap: var(--bui_spacing_4x);
 }
 .reverse__room ul{ 
   display: flex;
   gap: var(--bui_spacing_2x);
- }
+}
 .reverse__room ul li{
   display: flex;
   flex-direction: column;
@@ -63,4 +68,13 @@
 }
 .reverse__room ul li label{
   color: var(--text-primary-color);
+}
+.reverse__room button:disabled{
+  background: red;
+}
+.btn:disabled {
+  background-color: dimgrey;
+  color: linen;
+  opacity: 1;
+  cursor: initial;
 }

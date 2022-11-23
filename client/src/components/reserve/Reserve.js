@@ -1,11 +1,26 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
+import axios from "axios";
 import useFetch from '../../hooks/useFetch'
+import { SearchContext } from '../../context/SearchContext'
 import './reserve.css'
 
 const Reserve = ({ setOpenModal, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([])
   const {data, error, loading} = useFetch(`/hotel/room/${hotelId}`)
-  console.log(data, selectedRooms)
+  const navigate = useNavigate()
+  const { dates } = useContext(SearchContext)
+
+
+  /*const allDates = (roomId) => {
+    data.map(room =>{
+      room.roomNumbers
+
+    })
+  }
+
+  const allDates = getRange(dates[0].startDate, dates[0].endDate)*/
+  console.log(dates, selectedRooms)
 
   const handleClose = () => {
     setOpenModal(false)
@@ -18,7 +33,18 @@ const Reserve = ({ setOpenModal, hotelId }) => {
       : selectedRooms.filter(item => item !== val))
     console.log(e, checked, 'val', val, 'selectedRooms', selectedRooms)
   }
-  const handleReserve = () => {
+  const handleReserve = async () => {
+    await Promise.all(
+      selectedRooms.map(roomId => {
+        const resp = axios.put(`/hotel/room/${roomId}`,{
+          //dates: allDates
+        })
+  
+        return resp.data
+      })
+    )
+    setOpenModal(false)
+    navigate('/')
 
   }
   return ( <>
@@ -44,12 +70,11 @@ const Reserve = ({ setOpenModal, hotelId }) => {
                   <li>
                   <label htmlFor={no.number}><small>{no.number}</small></label>
                   <input 
-                        type="checkbox" 
-                        id={no.number} 
-                        value={no._id} 
-                        onChange={handleCheck}
-                        />
-                    
+                    type="checkbox" 
+                    id={no.number} 
+                    value={no._id} 
+                    onChange={handleCheck}
+                    />  
                   </li>
                 ))} 
                 </ul>            
@@ -59,11 +84,12 @@ const Reserve = ({ setOpenModal, hotelId }) => {
         </ul>
       </label>
       <button 
-      className="btn fullwidth" 
-      onClick={handleReserve}
-      disabled={!selectedRooms.length}
-      >
-      Reserve Now!</button>
+        className="btn fullwidth" 
+        onClick={handleReserve}
+        disabled={!selectedRooms.length}
+        >
+        Reserve Now!
+      </button>
     </div>
   </div>
   </> );

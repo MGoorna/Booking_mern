@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import useFetch from "../../hooks/useFetch";
@@ -16,6 +16,7 @@ const List = () => {
   const [minPrice, setMinPrice] = useState(undefined);
   const [maxPrice, setMaxPrice] = useState(undefined);
   const [openDate, setOpenDate] = useState(false);
+  const navigate = useNavigate();
 
   const { data, error, loading, reFetch } = useFetch(
     `/hotel/findByCitySingle?city=${destination}&min=${options.minPrice || 0 }&max=${options.maxPrice || 999}`)
@@ -29,6 +30,9 @@ const List = () => {
   }
   const handleSearch = () => {
     reFetch()
+  }
+  const handleClick = (hotelId) => {
+    navigate(`/hotel/${hotelId}`)
   }
 
   console.log(location, data, 'destination', destination)
@@ -150,7 +154,7 @@ const List = () => {
                 </div>
                 <button className="btn score-btn">{hotel.rating}</button>
               </div>
-              <button className="btn rating-btn">Show prices</button>
+              <button className="btn rating-btn pulse-animation" onClick={() => handleClick(hotel._id)}>Show prices</button>
             </div>
           </div> 
           ))}

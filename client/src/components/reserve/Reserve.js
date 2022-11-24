@@ -58,7 +58,7 @@ const Reserve = ({ setOpenModal, hotelId }) => {
         <ul>
           {data && data.map(room => (
             <li className="reverse__room" key={room._id}>
-            <h4 className="reverse__title">{room.title} </h4>
+              <h4 className="reverse__title">{room.title} </h4>
               <label className="reverse__room-container">
                 <div>                 
                   <span className="reserve__desc">{room.desc}, </span>           
@@ -67,7 +67,7 @@ const Reserve = ({ setOpenModal, hotelId }) => {
                 </div>
                 <ul>
                 {room.roomNumbers.map(no=>(
-                  <li>
+                  <li key={no.number}>
                   <label htmlFor={no.number}><small>{no.number}</small></label>
                   <input 
                     type="checkbox" 

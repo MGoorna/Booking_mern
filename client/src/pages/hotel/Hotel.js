@@ -176,7 +176,7 @@ const Hotel = () => {
           </div>
 
           <button 
-          className="btn hotel__btn"
+          className="btn hotel__btn pulse-animation"
           onClick={handleReserve}>Reserve</button>
           <button className="btn hotel__btn btn-revers">Save the property</button>
         </div>

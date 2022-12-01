@@ -11,7 +11,7 @@ import "./list.css";
 const List = () => {
   const location = useLocation();
   const [destination, setDestination] = useState(location.state.destination)
-  const [date, setDate] = useState(location.state.date)
+  const [dates, setDate] = useState(location.state.dates)
   const [options, setOptions] = useState(location.state.options);
   const [minPrice, setMinPrice] = useState(undefined);
   const [maxPrice, setMaxPrice] = useState(undefined);
@@ -56,14 +56,14 @@ const List = () => {
             <div className="explore__search-dates">
               <label>Check-in Date</label>
               <div onClick={() => setOpenDate(!openDate)}>{`${format(
-                date[0].startDate,
+                dates[0].startDate,
                 "MM/dd/yyyy"
-              )} to ${format(date[0].endDate, "MM/dd/yyyy")}`}</div>
+              )} to ${format(dates[0].endDate, "MM/dd/yyyy")}`}</div>
               {openDate && (
                 <DateRange
                   onChange={(item) => setDate([item.selection])}
                   minDate={new Date()}
-                  ranges={date}
+                  ranges={dates}
                 />
               )}
             </div>

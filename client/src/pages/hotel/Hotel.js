@@ -24,8 +24,9 @@ const Hotel = () => {
   //const [id, setId] = useState(location.state.id);
   const [openModal, setOpenModal] = useState(false);
   const { data, loading, error } = useFetch(`/hotel/find/${id}`)
+  const { dates } = useContext(SearchContext)
 
-  console.log('data', data && data.photos)
+  console.log('datedate', dates)
   const handleReserve = () => {
     if(user){
       setOpenModal(true)

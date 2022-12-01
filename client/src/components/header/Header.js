@@ -1,5 +1,6 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { SearchContext } from '../../context/SearchContext'
 import { FaHotel, FaBed, FaCar, FaPlane, FaCalendarDay, FaUserAlt } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
@@ -11,7 +12,7 @@ const Header = ({ type }) => {
   //let tomorow = new Date();
   const [destination, setDestination] = useState("zermatt");
   const [openDate, setOpenDate] = useState(false);
-  const [date, setDate] = useState([
+  const [dates, setDates] = useState([
     {
       startDate: today,
       endDate: today, //tomorow.setDate(today.getDate()+1),
@@ -25,6 +26,7 @@ const Header = ({ type }) => {
     children: 0,
     room: 1
   });
+  const { dispatch } = useContext(SearchContext)
 
   const handleStepper = (name, operation) => {
     //console.log(name, operation)
@@ -38,9 +40,10 @@ const Header = ({ type }) => {
   const navigate = useNavigate();
 
   const handleSearch = () =>{
-    console.log(date, 'option', options )
+    console.log(dates, 'option', options )
     if(destination !== ''){
-      navigate('/list', {state:{ destination, date, options }}); 
+      dispatch({ type:'NEW_SEARCH', payload:{ destination, dates, options }})
+      navigate('/list', {state:{ destination, dates, options }}); 
     }
       
   }
@@ -89,16 +92,16 @@ const Header = ({ type }) => {
             <span className="hs__date-text" 
               onClick={()=>setOpenDate(!openDate)} 
               style={{'color':'rgb(189, 189, 189)'}}>
-              {`${format(date[0].startDate, "MM/dd/yyyy")} `} 
+              {`${format(dates[0].startDate, "MM/dd/yyyy")} `} 
                to  
-              {` ${format(date[0].endDate, "MM/dd/yyyy")}`} 
+              {` ${format(dates[0].endDate, "MM/dd/yyyy")}`} 
             </span>
             <span className='hs__date-range'>
             {openDate && <DateRange
               editableDateInputs={true}
-              onChange={item => setDate([item.selection])}
+              onChange={item => setDates([item.selection])}
               moveRangeOnFirstSelection={false}
-              ranges={date} 
+              ranges={dates} 
               minDate={new Date()}           
             />}
             </span>

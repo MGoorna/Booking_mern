@@ -19,6 +19,7 @@ const Reserve = ({ setOpenModal, hotelId }) => {
     })
   }
 
+
   const allDates = getRange(dates[0].startDate, dates[0].endDate)*/
   console.log(dates, selectedRooms)
 

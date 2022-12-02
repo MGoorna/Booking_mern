@@ -1,4 +1,5 @@
 import express from 'express'
+import { updateRoomAvailability } from '../controllers/room.js';
 import Hotel from '../models/Hotel.js';
 import Room from '../models/Room.js'
 
@@ -54,6 +55,9 @@ router.put('/:id', async(req, res) => {
     res.status(500).json(err)
   }
 })
+
+//UPDATE AVAILEBALITY
+router.put('availability/:id', updateRoomAvailability )
 
 //DELETE
 router.delete('/:id', async (req, res) => {

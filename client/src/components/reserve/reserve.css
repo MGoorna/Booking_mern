@@ -69,6 +69,12 @@
 .reverse__room ul li label{
   color: var(--text-primary-color);
 }
+.reverse__room-check:disabled{
+  cursor: initial;
+  background: gray;
+  
+
+}
 .reverse__room button:disabled{
   background: red;
 }

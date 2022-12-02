@@ -8,19 +8,32 @@ import './reserve.css'
 const Reserve = ({ setOpenModal, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([])
   const {data, error, loading} = useFetch(`/hotel/room/${hotelId}`)
-  const navigate = useNavigate()
   const { dates } = useContext(SearchContext)
+  const navigate = useNavigate()
 
+  const getRangedDates = (startDate, endDate) => {
+    const start = new Date(startDate)
+    const end = new Date(endDate)
 
-  /*const allDates = (roomId) => {
-    data.map(room =>{
-      room.roomNumbers
+    const date = new Date(start.getTime())
+    const listDate = []
 
-    })
+    while(date<=end){
+      listDate.push(new Date(date))
+      date.setDate(date.getDate()+1)
+    }
+    return listDate
   }
 
+  const allDates = getRangedDates(dates[0].startDate, dates[0].endDate)
 
-  const allDates = getRange(dates[0].startDate, dates[0].endDate)*/
+  const isAvailable = (roomNumber) => {
+    const isFound = roomNumber.unavailableDates.some(date => {
+      allDates.includes(new Date(date).getTime())
+    })
+    return !isFound
+  }
+
   console.log(dates, selectedRooms)
 
   const handleClose = () => {
@@ -37,8 +50,8 @@ const Reserve = ({ setOpenModal, hotelId }) => {
   const handleReserve = async () => {
     await Promise.all(
       selectedRooms.map(roomId => {
-        const resp = axios.put(`/hotel/room/${roomId}`,{
-          //dates: allDates
+        const resp = axios.put(`/room/availability/${roomId}`,{
+          dates: allDates
         })
   
         return resp.data
@@ -73,8 +86,10 @@ const Reserve = ({ setOpenModal, hotelId }) => {
                   <input 
                     type="checkbox" 
                     id={no.number} 
+                    className='reverse__room-check'
                     value={no._id} 
                     onChange={handleCheck}
+                    disabled={isAvailable(no.number)}
                     />  
                   </li>
                 ))} 

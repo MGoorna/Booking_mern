@@ -8,21 +8,21 @@ const router = express.Router();
 //CREATE
 router.post('/:hotelid', async(req, res) => {
   const hotelId = req.params.hotelid;
- const newRoom = new Room(req.body)
+  const newRoom = new Room(req.body)
 
- try{
-  const savedRoom = await newRoom.save()
-  try {
-    await Hotel.findByIdAndUpdate(hotelId,{
-      $push: { rooms: savedRoom._id }
-    })
-  } catch (err) {
-    res.status(400).json(err)
+  try{
+    const savedRoom = await newRoom.save()
+    try {
+      await Hotel.findByIdAndUpdate(hotelId,{
+        $push: { rooms: savedRoom._id }
+      })
+    } catch (err) {
+      res.status(400).json(err)
+    }
+    res.status(201).json(savedRoom)
+  }catch(err){
+    res.status(500).json(err)
   }
-  res.status(201).json(savedRoom)
- }catch(err){
-  res.status(500).json(err)
- }
 })
 
 //GET one room
@@ -57,7 +57,7 @@ router.put('/:id', async(req, res) => {
 })
 
 //UPDATE AVAILEBALITY
-router.put('availability/:id', updateRoomAvailability )
+router.put('/availability/:id', updateRoomAvailability )
 
 //DELETE
 router.delete('/:id', async (req, res) => {

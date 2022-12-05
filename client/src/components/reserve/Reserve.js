@@ -19,22 +19,23 @@ const Reserve = ({ setOpenModal, hotelId }) => {
     const listDate = []
 
     while(date<=end){
-      listDate.push(new Date(date))
+      listDate.push(new Date(date).getTime())
       date.setDate(date.getDate()+1)
     }
     return listDate
   }
-
+  //console.log(dates)
   const allDates = getRangedDates(dates[0].startDate, dates[0].endDate)
 
-  const isAvailable = (roomNumber) => {
-    const isFound = roomNumber.unavailableDates.some(date => {
+  const isAvailable = (roomNumbers) => {
+    console.log( allDates, roomNumbers)
+    const isFound = roomNumbers.unavailableDates.some(date => {
       allDates.includes(new Date(date).getTime())
     })
     return !isFound
   }
 
-  console.log(dates, selectedRooms)
+ //console.log(dates, selectedRooms)
 
   const handleClose = () => {
     setOpenModal(false)
@@ -42,10 +43,11 @@ const Reserve = ({ setOpenModal, hotelId }) => {
   const handleCheck = (e) => {
     const checked = e.target.checked;
     const val = e.target.value;
-    setSelectedRooms(checked 
+    setSelectedRooms(
+      checked 
       ? [...selectedRooms, val] 
       : selectedRooms.filter(item => item !== val))
-    console.log(e, checked, 'val', val, 'selectedRooms', selectedRooms)
+    //console.log(e, checked, 'val', val, 'selectedRooms', selectedRooms)
   }
   const handleReserve = async () => {
     await Promise.all(
@@ -89,7 +91,7 @@ const Reserve = ({ setOpenModal, hotelId }) => {
                     className='reverse__room-check'
                     value={no._id} 
                     onChange={handleCheck}
-                    disabled={isAvailable(no.number)}
+                    disabled={!isAvailable(no)}
                     />  
                   </li>
                 ))} 

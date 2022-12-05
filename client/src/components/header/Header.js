@@ -40,7 +40,7 @@ const Header = ({ type }) => {
   const navigate = useNavigate();
 
   const handleSearch = () =>{
-    console.log(dates, 'option', options )
+    console.log(new Date(dates[0].startDate).getTime(), 'option', options )
     if(destination !== ''){
       dispatch({ type:'NEW_SEARCH', payload:{ destination, dates, options }})
       navigate('/list', {state:{ destination, dates, options }}); 

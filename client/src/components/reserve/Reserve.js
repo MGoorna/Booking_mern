@@ -5,6 +5,7 @@ import useFetch from '../../hooks/useFetch'
 import { SearchContext } from '../../context/SearchContext'
 import './reserve.css'
 
+
 const Reserve = ({ setOpenModal, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([])
   const {data, error, loading} = useFetch(`/hotel/room/${hotelId}`)
@@ -24,22 +25,20 @@ const Reserve = ({ setOpenModal, hotelId }) => {
     }
     return listDate
   }
-  //console.log(dates)
+  
   const allDates = getRangedDates(dates[0].startDate, dates[0].endDate)
 
-  const isAvailable = (roomNumbers) => {
-    console.log( allDates, roomNumbers)
-    const isFound = roomNumbers.unavailableDates.some(date => {
+  const isAvailable = (roomNumber) => {  
+    const isFound = roomNumber.unavailableDates.some(date => 
       allDates.includes(new Date(date).getTime())
-    })
+    )
     return !isFound
   }
-
- //console.log(dates, selectedRooms)
 
   const handleClose = () => {
     setOpenModal(false)
   }
+
   const handleCheck = (e) => {
     const checked = e.target.checked;
     const val = e.target.value;
@@ -47,22 +46,23 @@ const Reserve = ({ setOpenModal, hotelId }) => {
       checked 
       ? [...selectedRooms, val] 
       : selectedRooms.filter(item => item !== val))
-    //console.log(e, checked, 'val', val, 'selectedRooms', selectedRooms)
   }
+
   const handleReserve = async () => {
     await Promise.all(
       selectedRooms.map(roomId => {
         const resp = axios.put(`/room/availability/${roomId}`,{
           dates: allDates
         })
-  
         return resp.data
       })
     )
     setOpenModal(false)
     navigate('/')
-
   }
+  
+  if(loading) return (<div>Loading...</div>)
+  if(error) return (<div>Something went wrong...</div>)
   return ( <>
   <div className="reserve">
     <div className="reserve__container">
@@ -84,10 +84,10 @@ const Reserve = ({ setOpenModal, hotelId }) => {
                 <ul>
                 {room.roomNumbers.map(no=>(
                   <li key={no.number}>
-                  <label htmlFor={no.number}><small>{no.number}</small></label>
+                  <label htmlFor={no._id}><small>{no.number}</small></label>
                   <input 
                     type="checkbox" 
-                    id={no.number} 
+                    id={no._id} 
                     className='reverse__room-check'
                     value={no._id} 
                     onChange={handleCheck}

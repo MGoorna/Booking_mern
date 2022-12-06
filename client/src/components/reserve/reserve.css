@@ -72,13 +72,11 @@
 .reverse__room-check:disabled{
   cursor: initial;
   background: gray;
-  
-
 }
 .reverse__room button:disabled{
   background: red;
 }
-.btn:disabled {
+.btn:disabled{
   background-color: dimgrey;
   color: linen;
   opacity: 1;

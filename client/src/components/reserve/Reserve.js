@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react'
+import { useState, useContext, useRef, useEffect } from "react";
 import { useNavigate } from 'react-router-dom'
 import axios from "axios";
 import useFetch from '../../hooks/useFetch'
@@ -6,11 +6,24 @@ import { SearchContext } from '../../context/SearchContext'
 import './reserve.css'
 
 
+
 const Reserve = ({ setOpenModal, hotelId }) => {
   const [selectedRooms, setSelectedRooms] = useState([])
   const {data, error, loading} = useFetch(`/hotel/room/${hotelId}`)
   const { dates } = useContext(SearchContext)
   const navigate = useNavigate()
+  const modalCloseRef = useRef(null);
+
+useEffect(()=>{
+  
+        //animacja 
+        const span = modalCloseRef.current
+        
+       
+        const before = span.querySelector(".reserve__before")
+        console.log('before', before)
+        before.classList.add('active')
+  },[])
 
   const getRangedDates = (startDate, endDate) => {
     const start = new Date(startDate)
@@ -26,7 +39,7 @@ const Reserve = ({ setOpenModal, hotelId }) => {
     return listDate
   }
   
-  const allDates = getRangedDates(dates[0].startDate, dates[0].endDate)
+  const allDates = getRangedDates(dates[0].startDate, dates[0].endDate )
 
   const isAvailable = (roomNumber) => {  
     const isFound = roomNumber.unavailableDates.some(date => 
@@ -67,7 +80,14 @@ const Reserve = ({ setOpenModal, hotelId }) => {
   <div className="reserve">
     <div className="reserve__container">
       <div className="reserve__close" >
-        <div className="reserve__close-btn" onClick={handleClose}></div>
+        <div 
+        className="reserve__close-btn" 
+        onClick={handleClose}
+        ref={modalCloseRef}
+        >
+        <span className="reserve__before"></span>
+        <span className="reserve__after active"></span>
+        </div>
       </div>
       <label htmlFor="">
         <h3>Select your rooms:</h3>

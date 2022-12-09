@@ -35,21 +35,30 @@
   transform: translate(-75%,85%);
   cursor: pointer;
 }
-.reserve__close-btn:before,
-.reserve__close-btn:after{
-  content: "";
+
+.reserve__before,
+.reserve__after{
+  //content: "";
   position: absolute;
+  top:0;
   width: 100%;
-  height: 4px;
+  height: 1px;
   background: var(--secondary-color);
   transform-origin: center;
+  transform: rotate(45deg) translate(-58px,0px);
+  //transform-origin: 0;
+  transition: all 2s ease-in;
+  
 }
-.reserve__close-btn:before{
-  transform: rotate(45deg);
+
+.reserve__before.active{
+  transform: matrix(0.70711, 0.7071, -0.7071, 0.70711, -40, -40);
+  transition: all .2s ease-in;
 }
-.reserve__close-btn:after{
+.reserve__after{
   transform: rotate(135deg);
 }
+
 .reverse__room-container{
   margin-bottom: var(--bui_spacing_4x);
   display: flex;

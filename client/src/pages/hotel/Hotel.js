@@ -27,9 +27,13 @@ const Hotel = () => {
   const { dates } = useContext(SearchContext)
 
   console.log('datedate', dates)
+
+  
   const handleReserve = () => {
+    
     if(user){
       setOpenModal(true)
+
       
     }else{
       navigate('/login')
@@ -184,7 +188,7 @@ const Hotel = () => {
       </div>
     </div>
     {openModal && (
-      <Reserve setOpenModal={setOpenModal} hotelId={id}/>
+      <Reserve setOpenModal={setOpenModal} hotelId={id} />
     )}
   </div>
   ))

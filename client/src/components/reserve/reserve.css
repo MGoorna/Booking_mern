@@ -45,15 +45,18 @@
   height: 1px;
   background: var(--secondary-color);
   transform-origin: center;
-  transform: rotate(45deg) translate(-58px,0px);
+  //transform: rotate(45deg) translate(-58px,0px);
   //transform-origin: 0;
-  transition: all 2s ease-in;
+  transition: all .2s ease-in;
   
 }
-
+.reserve__before{
+  transform: rotate(45deg) translate(-58px,0px);
+  //transition: all .2s ease-in;
+}
 .reserve__before.active{
   transform: matrix(0.70711, 0.7071, -0.7071, 0.70711, -40, -40);
-  transition: all .2s ease-in;
+  //transition: all .2s ease-in;
 }
 .reserve__after{
   transform: rotate(135deg);

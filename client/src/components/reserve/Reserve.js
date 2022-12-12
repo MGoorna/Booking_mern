@@ -6,24 +6,41 @@ import { SearchContext } from '../../context/SearchContext'
 import './reserve.css'
 
 
-
-const Reserve = ({ setOpenModal, hotelId }) => {
+const Reserve = ({ hotelId, closeModal }) => {
   const [selectedRooms, setSelectedRooms] = useState([])
   const {data, error, loading} = useFetch(`/hotel/room/${hotelId}`)
   const { dates } = useContext(SearchContext)
   const navigate = useNavigate()
-  const modalCloseRef = useRef(null);
-
-useEffect(()=>{
+  //let modalCloseRef = useRef(null);
+  let modalContainerRef = useRef();
   
-        //animacja 
-        const span = modalCloseRef.current
-        
-       
-        const before = span.querySelector(".reserve__before")
-        console.log('before', before)
-        before.classList.add('active')
+
+  const handleClose = (e) => {
+    if(
+      modalContainerRef.current &&
+      !modalContainerRef.current.contains(e.target)){
+      closeModal()
+    }   
+  }
+  useEffect(()=>{ 
+
+    const { current: modalDom } = modalContainerRef;
+
+    //modalDom.addEventListener('mousedown', handleClose, { capture: true })
+    document.addEventListener('click', handleClose, { capture: true })
+    //animacja 
+    /*const span = modalCloseRef.current
+    const before = span.querySelector(".reserve__before")
+    console.log('before', before)
+    before.classList.add('active')*/
+
+    return () => {
+      document.removeEventListener('click', handleClose, { capture: true })
+      
+    }
   },[])
+
+
 
   const getRangedDates = (startDate, endDate) => {
     const start = new Date(startDate)
@@ -48,10 +65,6 @@ useEffect(()=>{
     return !isFound
   }
 
-  const handleClose = () => {
-    setOpenModal(false)
-  }
-
   const handleCheck = (e) => {
     const checked = e.target.checked;
     const val = e.target.value;
@@ -70,20 +83,20 @@ useEffect(()=>{
         return resp.data
       })
     )
-    setOpenModal(false)
+    closeModal()
     navigate('/')
   }
   
   if(loading) return (<div>Loading...</div>)
   if(error) return (<div>Something went wrong...</div>)
-  return ( <>
+  return ( 
   <div className="reserve">
-    <div className="reserve__container">
+    <div className="reserve__container" ref={modalContainerRef} id="modal">
       <div className="reserve__close" >
         <div 
         className="reserve__close-btn" 
-        onClick={handleClose}
-        ref={modalCloseRef}
+        onClick={closeModal}
+        //ref={(node3) => (modalCloseRef = node3)}
         >
         <span className="reserve__before"></span>
         <span className="reserve__after active"></span>
@@ -130,7 +143,7 @@ useEffect(()=>{
       </button>
     </div>
   </div>
-  </> );
+ );
 }
  
 export default Reserve;

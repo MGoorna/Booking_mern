@@ -1,6 +1,5 @@
 import { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { SearchContext } from "../../context/SearchContext";
 import Header from "../../components/header/Header";
 import Navbar from "../../components/navbar/Navbar";
 import MailList from "../../components/mailList/MailList";
@@ -16,35 +15,32 @@ import "./hotel.css";
 
 
 const Hotel = () => {
-  //const { data, loading, error } = useFetch(`/hotel/find/63443252900c165c1d798f43`);
   const user = useContext(AuthContext);
   const location = useLocation();
-  const id = location.pathname.split("/")[2];
   const navigate = useNavigate();
-  //const [id, setId] = useState(location.state.id);
+  const id = location.pathname.split("/")[2];
   const [openModal, setOpenModal] = useState(false);
   const { data, loading, error } = useFetch(`/hotel/find/${id}`)
-  const { dates } = useContext(SearchContext)
 
-  console.log('datedate', dates)
 
-  
   const handleReserve = () => {
     
     if(user){
-      setOpenModal(true)
-
-      
+      setOpenModal(true)  
     }else{
       navigate('/login')
     }
   }
 
+  const closeModal =() => {
+    setOpenModal(false)
+  }
   return ( <>
   <Navbar />
   <Header type='list'/>
-  {loading ? "Loading"
-  : (data && (
+  {loading ? "Loading": 
+    error ? "error"
+    : (data && (
     <div className="hotel">
     <div className="hotel__container">
       <h1 className="hotel__title">{data.name}</h1>
@@ -84,8 +80,7 @@ const Hotel = () => {
           {data && data.photos && data.photos.map((img, index) => {
             if(index > 2 && index < 8){ 
               return <img className="hotel__img" src={img} alt={data.name} key={img}/>
-            }
-            
+            }     
           })} 
           </div>
         </div>
@@ -179,7 +174,6 @@ const Hotel = () => {
               <li><GiMountaintop size={12} color={'green'}/> Mountain view</li>
             </ul>
           </div>
-
           <button 
           className="btn hotel__btn pulse-animation"
           onClick={handleReserve}>Reserve</button>
@@ -188,11 +182,10 @@ const Hotel = () => {
       </div>
     </div>
     {openModal && (
-      <Reserve setOpenModal={setOpenModal} hotelId={id} />
+      <Reserve hotelId={id} closeModal={closeModal}/>
     )}
   </div>
   ))
-
   }
   <MailList />
   <Footer />

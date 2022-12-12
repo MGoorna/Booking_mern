@@ -20,6 +20,7 @@
   max-width: 50vw;
   padding: 18px 30px 50px;
   background: var(--white);
+  overflow: hidden;
 }
 .reverse__container ul{ 
   margin: 0 0 0 var(--bui_spacing_2x);
@@ -47,21 +48,31 @@
   transform-origin: center;
   //transform: rotate(45deg) translate(-58px,0px);
   //transform-origin: 0;
-  transition: all .2s ease-in;
+  //transition: all 2s ease-in;
   
 }
 .reserve__before{
-  transform: rotate(45deg) translate(-58px,0px);
-  //transition: all .2s ease-in;
+  transform: rotate(45deg) translate(0px,0px);
+  animation: fadeInLeft .2s  1 normal ease-in-out;
+
 }
-.reserve__before.active{
-  transform: matrix(0.70711, 0.7071, -0.7071, 0.70711, -40, -40);
-  //transition: all .2s ease-in;
-}
-.reserve__after{
-  transform: rotate(135deg);
+@keyframes fadeInLeft{
+  0%{
+    transform: rotate(45deg) translate(-58px,0px);
+  }
+  100%{
+    //ransform: matrix(0.70711, 0.7071, -0.7071, 0.70711, 0, 0);
+  }
 }
 
+.reserve__after{
+  transform: rotate(135deg) translate(0px,0px);
+  animation: fadeInRight .38s  1 normal ease-in-out;
+}
+@keyframes fadeInRight{
+  0%{transform: rotate(135deg) translate(-46px, 0px)}
+  100%{}
+}
 .reverse__room-container{
   margin-bottom: var(--bui_spacing_4x);
   display: flex;

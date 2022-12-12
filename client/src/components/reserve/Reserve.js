@@ -6,41 +6,27 @@ import { SearchContext } from '../../context/SearchContext'
 import './reserve.css'
 
 
-const Reserve = ({ hotelId, closeModal }) => {
+const Reserve = ({ hotelId, closeModal, openModal }) => {
   const [selectedRooms, setSelectedRooms] = useState([])
   const {data, error, loading} = useFetch(`/hotel/room/${hotelId}`)
   const { dates } = useContext(SearchContext)
   const navigate = useNavigate()
-  //let modalCloseRef = useRef(null);
   let modalContainerRef = useRef();
   
-
   const handleClose = (e) => {
+    const { current: modalDom } = modalContainerRef;
     if(
-      modalContainerRef.current &&
-      !modalContainerRef.current.contains(e.target)){
-      closeModal()
+      modalDom &&
+      !modalDom.contains(e.target)){
+        closeModal()
     }   
   }
   useEffect(()=>{ 
-
-    const { current: modalDom } = modalContainerRef;
-
-    //modalDom.addEventListener('mousedown', handleClose, { capture: true })
     document.addEventListener('click', handleClose, { capture: true })
-    //animacja 
-    /*const span = modalCloseRef.current
-    const before = span.querySelector(".reserve__before")
-    console.log('before', before)
-    before.classList.add('active')*/
-
     return () => {
-      document.removeEventListener('click', handleClose, { capture: true })
-      
+      document.removeEventListener('click', handleClose, { capture: true })    
     }
   },[])
-
-
 
   const getRangedDates = (startDate, endDate) => {
     const start = new Date(startDate)
@@ -66,10 +52,10 @@ const Reserve = ({ hotelId, closeModal }) => {
   }
 
   const handleCheck = (e) => {
-    const checked = e.target.checked;
+    const isChecked = e.target.checked;
     const val = e.target.value;
     setSelectedRooms(
-      checked 
+      isChecked 
       ? [...selectedRooms, val] 
       : selectedRooms.filter(item => item !== val))
   }
@@ -95,11 +81,11 @@ const Reserve = ({ hotelId, closeModal }) => {
       <div className="reserve__close" >
         <div 
         className="reserve__close-btn" 
+        id="modal-close-button"
         onClick={closeModal}
-        //ref={(node3) => (modalCloseRef = node3)}
         >
-        <span className="reserve__before"></span>
-        <span className="reserve__after active"></span>
+        <span className={`reserve__before ${openModal?"active":""}`}></span>
+        <span className="reserve__after"></span>
         </div>
       </div>
       <label htmlFor="">

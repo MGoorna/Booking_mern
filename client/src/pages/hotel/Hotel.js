@@ -23,10 +23,9 @@ const Hotel = () => {
   const { data, loading, error } = useFetch(`/hotel/find/${id}`)
 
 
-  const handleReserve = () => {
-    
+  const handleReserve = () => {    
     if(user){
-      setOpenModal(true)  
+      setOpenModal(true) 
     }else{
       navigate('/login')
     }
@@ -35,6 +34,7 @@ const Hotel = () => {
   const closeModal =() => {
     setOpenModal(false)
   }
+  
   return ( <>
   <Navbar />
   <Header type='list'/>
@@ -182,7 +182,7 @@ const Hotel = () => {
       </div>
     </div>
     {openModal && (
-      <Reserve hotelId={id} closeModal={closeModal}/>
+      <Reserve hotelId={id} closeModal={closeModal} openModal={openModal}/>
     )}
   </div>
   ))

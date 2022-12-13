@@ -4,20 +4,24 @@ import './modal.css'
 const Modal = ({ closeModal, title, children}) => {
   let modalContainerRef = useRef();
 
+  const handleClose = (e) => {
+    const {current: modalDom} = modalContainerRef
+    if(modalDom && !modalDom.contains(e.target)){
+      closeModal()
+    }  
+  }
+
   useEffect(()=>{ 
+    const closeOnEscapeKey = e => e.key === "Escape" ? closeModal() : null;
+    document.addEventListener("keydown", closeOnEscapeKey);
     document.addEventListener('click', handleClose, { capture: true })
     return () => {
+      document.removeEventListener("keydown", closeOnEscapeKey);
       document.removeEventListener('click', handleClose, { capture: true })    
     }
   },[])
 
-  const handleClose = (e) => {
-    const {current: modalDom} = modalContainerRef
-    if(modalDom && !modalDom.contains(e.target)){
-      //closeModal()
-      closeModal()
-    }  
-  }
+
 
   return ( 
     <div className="modal">
@@ -26,7 +30,6 @@ const Modal = ({ closeModal, title, children}) => {
           <div 
             className="modal__close-btn" 
             id="modal-close-button"
-            //onClick={closeModal()}
             onClick={closeModal}
             >
             <span className="modal__before"></span>

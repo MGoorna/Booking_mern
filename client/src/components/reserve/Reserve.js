@@ -4,15 +4,20 @@ import axios from "axios";
 import useFetch from '../../hooks/useFetch'
 import { SearchContext } from '../../context/SearchContext'
 import './reserve.css'
+import Modal from "../modal/Modal";
 
 
-const Reserve = ({ hotelId, closeModal, openModal }) => {
+const Reserve = ({ hotelId, setOpenModal }) => {
   const [selectedRooms, setSelectedRooms] = useState([])
   const {data, error, loading} = useFetch(`/hotel/room/${hotelId}`)
   const { dates } = useContext(SearchContext)
   const navigate = useNavigate()
   let modalContainerRef = useRef();
   
+  const closeModal =() => {
+    setOpenModal(false)
+  }
+
   const handleClose = (e) => {
     const { current: modalDom } = modalContainerRef;
     if(
@@ -76,18 +81,8 @@ const Reserve = ({ hotelId, closeModal, openModal }) => {
   if(loading) return (<div>Loading...</div>)
   if(error) return (<div>Something went wrong...</div>)
   return ( 
-  <div className="reserve">
-    <div className="reserve__container" ref={modalContainerRef} id="modal">
-      <div className="reserve__close" >
-        <div 
-        className="reserve__close-btn" 
-        id="modal-close-button"
-        onClick={closeModal}
-        >
-        <span className={`reserve__before ${openModal?"active":""}`}></span>
-        <span className="reserve__after"></span>
-        </div>
-      </div>
+    <Modal  title="Select your rooms:" closeModal={closeModal}>
+      <>
       <label htmlFor="">
         <h3>Select your rooms:</h3>
         <ul>
@@ -127,8 +122,24 @@ const Reserve = ({ hotelId, closeModal, openModal }) => {
         >
         Reserve Now!
       </button>
-    </div>
-  </div>
+      </>
+    </Modal>
+  /*<div className="reserve">
+    <div className="reserve__container" ref={modalContainerRef} id="modal">
+      <div className="reserve__close" >
+        <div 
+        className="reserve__close-btn" 
+        id="modal-close-button"
+        onClick={closeModal}
+        >
+        <span className={`reserve__before ${openModal?"active":""}`}></span>
+        <span className="reserve__after"></span>
+        </div>
+      </div>*/
+
+
+    /*</div>
+  </div>*/
  );
 }
  

@@ -1,0 +1,63 @@
+.modal{
+  position: fixed;
+  display: block;
+  height: -webkit-fill-available;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.3);
+  text-align: left;
+  z-index: 1001;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.modal__container{
+  min-width: 400px;
+  width: auto;
+  height: auto;
+  max-width: 50vw;
+  padding: 18px 30px 50px;
+  background: var(--white);
+  overflow: hidden;
+}
+/*.modal__container ul{ 
+  margin: 0 0 0 var(--bui_spacing_2x);
+}*/
+.modal__close{
+  text-align: right;
+}
+.modal__close-btn{
+  display: inline-block;
+  position: relative;
+  width: 18px;
+  height: 18px;
+  transform: translate(-75%,85%);
+  cursor: pointer;
+}
+.modal__before,
+.modal__after{
+  position: absolute;
+  top:0;
+  width: 100%;
+  height: 1px;
+  background: var(--secondary-color);
+  transform-origin: center;
+}
+.modal__before{
+  transform: rotate(45deg) translate(0px,0px);
+  animation: fadeInLeft .2s  1 normal ease-in-out;
+}
+@keyframes fadeInLeft{
+  0%{transform: rotate(45deg) translate(-58px,0px);}
+  100%{/*ransform: matrix(0.70711, 0.7071, -0.7071, 0.70711, 0, 0);*/}
+}
+.modal__after{
+  transform: rotate(135deg) translate(0px,0px);
+  animation: fadeInRight .38s  1 normal ease-in-out;
+}
+@keyframes fadeInRight{
+  0%{transform: rotate(135deg) translate(-46px, 0px)}
+  100%{}
+}

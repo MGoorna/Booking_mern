@@ -31,10 +31,8 @@ const Hotel = () => {
     }
   }
 
-  const closeModal =() => {
-    setOpenModal(false)
-  }
-  
+
+
   return ( <>
   <Navbar />
   <Header type='list'/>
@@ -182,7 +180,7 @@ const Hotel = () => {
       </div>
     </div>
     {openModal && (
-      <Reserve hotelId={id} closeModal={closeModal} openModal={openModal}/>
+      <Reserve hotelId={id} /*closeModal={closeModal}*/ setOpenModal={setOpenModal}/>
     )}
   </div>
   ))

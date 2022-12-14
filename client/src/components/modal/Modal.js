@@ -1,5 +1,7 @@
 import { useEffect, useRef } from "react"
+import ReactDom from 'react-dom'
 import './modal.css'
+
 
 const Modal = ({ closeModal, title, children}) => {
   let modalContainerRef = useRef();
@@ -21,9 +23,7 @@ const Modal = ({ closeModal, title, children}) => {
     }
   },[])
 
-
-
-  return ( 
+  return ReactDom.createPortal( 
     <div className="modal">
       <div className="modal__container" id="modal_container" ref={modalContainerRef}>
         <div className="modal__close" >
@@ -41,7 +41,8 @@ const Modal = ({ closeModal, title, children}) => {
           {children}
         </div>
       </div>    
-    </div>
+    </div>,
+    document.body
   );
 }
  

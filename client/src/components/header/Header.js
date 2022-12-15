@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext'
 import { FaHotel, FaBed, FaCar, FaPlane, FaCalendarDay, FaUserAlt } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
@@ -9,17 +9,16 @@ import './header.css';
 
 const Header = ({ type }) => {
   const today = new Date();
-  //let tomorow = new Date();
+  const tomorow = new Date();
   const [destination, setDestination] = useState("zermatt");
   const [openDate, setOpenDate] = useState(false);
   const [dates, setDates] = useState([
     {
       startDate: today,
-      endDate: today, //tomorow.setDate(today.getDate()+1),
+      endDate: tomorow.setDate(today.getDate()+1),
       key: 'selection'
     }
   ]);
-
   const [openOptions, setOpenOptions] = useState(false);
   const [options, setOptions] = useState({
     adult: 1,
@@ -29,7 +28,6 @@ const Header = ({ type }) => {
   const { dispatch } = useContext(SearchContext)
 
   const handleStepper = (name, operation) => {
-    //console.log(name, operation)
     setOptions(prev => {
       return {
         ...prev, [name]: operation === 'increase' ? options[name]+1 : options[name]-1
@@ -43,32 +41,31 @@ const Header = ({ type }) => {
     console.log(new Date(dates[0].startDate).getTime(), 'option', options )
     if(destination !== ''){
       dispatch({ type:'NEW_SEARCH', payload:{ destination, dates, options }})
-      navigate('/list', {state:{ destination, dates, options }}); 
+      navigate('/list', {state:{ destination, dates, options }});     
     }
-      
   }
-  
+
   return ( <>
     <header className="header">
       <div className="header__container">
-        <div className="h__list">
-          <div className="hl__item active">
+        <nav className="h__list">
+          <NavLink to="/">
             <FaHotel size={'1.5em'}/>
             <span>Stays</span>
-          </div>
-          <div className="hl__item">
+          </NavLink>
+          <NavLink to="/about">
             <FaBed size={'1.5em'}/>
             <span>Beds</span>
-          </div>
-          <div className="hl__item">
-            <FaPlane size={'1.5em'}/>
+          </NavLink>
+          <NavLink to="/flights">
+          <FaPlane size={'1.5em'}/>
             <span>Flights</span>
-          </div>
-          <div className="hl__item">
-            <FaCar size={'1.5em'}/>
+          </NavLink>
+          <NavLink to="/carrental">
+          <FaCar size={'1.5em'}/>
             <span>Car rental</span>
-          </div>       
-        </div>
+          </NavLink>     
+        </nav>
         {type !== 'list' && <>
         <div className="h__desc">
           <p>Available until Jan 3, 2024</p>
@@ -174,5 +171,5 @@ const Header = ({ type }) => {
     </header>
   </> );
 }
- 
+
 export default Header;

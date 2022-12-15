@@ -1,12 +1,10 @@
 .header{
-  //position: sticky;
   top: 0;
   width: 100%;
   height: auto;
   padding-top: var(--section-space-small);
   padding-bottom: var(--section-space-small);
   z-index: 10;
-  //contain: size style layout;
   line-height: 20px !important;
   background: var(--primary-color);
   display: flex;
@@ -29,7 +27,7 @@
   align-content: center;
   gap: 10px;
 }
-.hl__item{
+header nav a{
   margin-right: 30px;
   padding: 10px 15px;
   display: flex;
@@ -38,13 +36,14 @@
   border: 0px solid white;
   border-radius: 999px;
   cursor: pointer;
+  color: white;
 }
-.hl__item.active{
+header nav a.active{
   padding: 12px;
   background-color: #0071c2;
   border: 1px solid white;
 }
-.hl__item:hover{
+header nav a:hover{
   background: var(--secondary-color);
 }
 .h__desc{

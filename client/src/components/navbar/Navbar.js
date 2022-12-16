@@ -21,7 +21,7 @@ const Navbar = () => {
   }
 
   return ( <>
-    <header className="navbar">
+    <div className="navbar">
       <nav className="n__container">
         <Link to="/">
           <span className="n__logo">LOGO</span>
@@ -37,7 +37,7 @@ const Navbar = () => {
           </div>
         )}
       </nav>
-    </header>
+    </div>
   </> );
 }
 export default Navbar;

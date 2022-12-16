@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext'
-import { FaHotel, FaBed, FaCar, FaPlane, FaCalendarDay, FaUserAlt } from "react-icons/fa";
+import { FaBed, FaCalendarDay, FaUserAlt } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
 import './header.css';
@@ -48,24 +48,6 @@ const Header = ({ type }) => {
   return ( <>
     <header className="header">
       <div className="header__container">
-        <nav className="h__list">
-          <NavLink to="/">
-            <FaHotel size={'1.5em'}/>
-            <span>Stays</span>
-          </NavLink>
-          <NavLink to="/about">
-            <FaBed size={'1.5em'}/>
-            <span>Beds</span>
-          </NavLink>
-          <NavLink to="/flights">
-          <FaPlane size={'1.5em'}/>
-            <span>Flights</span>
-          </NavLink>
-          <NavLink to="/carrental">
-          <FaCar size={'1.5em'}/>
-            <span>Car rental</span>
-          </NavLink>     
-        </nav>
         {type !== 'list' && <>
         <div className="h__desc">
           <p>Available until Jan 3, 2024</p>

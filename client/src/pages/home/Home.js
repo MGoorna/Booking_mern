@@ -1,15 +1,11 @@
-import Navbar from '../../components/navbar/Navbar';
 import Header from '../../components/header/Header';
 import Featured from '../../components/featured/Featured';
 import FeatureProperties from '../../components/featureProperties/FeatureProperties';
 import FeatureExplore from '../../components/featureExplore/FeatureExplore';
-import MailList from '../../components/mailList/MailList';
-import Footer from '../../components/footer/Footer';
 import './home.css';
 
 const Home = () => {
   return ( <>
-    <Navbar />
     <Header />   
     <main className="home">
       <div className="h__container">
@@ -20,8 +16,6 @@ const Home = () => {
         <FeatureExplore />
         <h2 className="h__title">Browse by property type</h2>
         <FeatureProperties />
-        <MailList />
-        <Footer />
       </div>
     </main>
   </> );

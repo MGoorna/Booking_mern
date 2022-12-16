@@ -27,7 +27,7 @@
   align-content: center;
   gap: 10px;
 }
-header nav a{
+.h__list a{
   margin-right: 30px;
   padding: 10px 15px;
   display: flex;
@@ -38,11 +38,11 @@ header nav a{
   cursor: pointer;
   color: white;
 }
-header nav a.active{
+.h__list a.active{
   padding: 12px;
   background-color: #0071c2;
   border: 1px solid white;
 }
-header nav a:hover{
+.h__list a:hover{
   background: var(--secondary-color);
 }

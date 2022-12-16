@@ -27,25 +27,6 @@
   align-content: center;
   gap: 10px;
 }
-header nav a{
-  margin-right: 30px;
-  padding: 10px 15px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  border: 0px solid white;
-  border-radius: 999px;
-  cursor: pointer;
-  color: white;
-}
-header nav a.active{
-  padding: 12px;
-  background-color: #0071c2;
-  border: 1px solid white;
-}
-header nav a:hover{
-  background: var(--secondary-color);
-}
 .h__desc{
   padding: 48px 0 95px;
   text-align: left;

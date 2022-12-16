@@ -1,4 +1,4 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useContext} from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { IoMdLogOut } from "react-icons/io";
@@ -26,16 +26,23 @@ const Navbar = () => {
         <Link to="/">
           <span className="n__logo">LOGO</span>
         </Link>
-        {user ? 
-        (<div className="n__user-details"><span>{user.email}</span>
-          <span><IoMdLogOut size={26} onClick={handleLogout}/></span>
-        </div>) 
-        :(
-          <div className="n__login">
-            <button type='text' className="n__btn" onClick={handleLogin}>Login</button>
-            <button type='text' className="n__btn" onClick={handleSubmit}>Register</button>
-          </div>
-        )}
+        <div className="btn__group">
+          <NavLink to="/country" className="btn__sq"><div className="btn__sq-text">USA</div></NavLink>
+          <NavLink to="/currency" className="btn__sq"><div className="btn__sq-text">FCH</div></NavLink>
+          <NavLink to="/help" className="btn__sq"><div className="btn__sq-text help">?</div></NavLink>
+
+          {user ? 
+          (<div className="n__user-details">
+            <span>{user.email}</span>
+            <span><IoMdLogOut size={26} onClick={handleLogout}/></span>
+          </div>) 
+          :(
+            <div className="n__login">
+              <button type='text' className="n__btn" onClick={handleLogin}>Login</button>
+              <button type='text' className="n__btn" onClick={handleSubmit}>Register</button>
+            </div>
+          )}
+        </div>
       </nav>
     </div>
   </> );

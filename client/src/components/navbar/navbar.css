@@ -14,6 +14,12 @@
 .n__logo{
   color: var(--text-secondary-color);
 }
+.btn__group{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
 .n__user-details{
   display: flex;
   align-items: center;
@@ -31,3 +37,32 @@
   cursor: pointer;
 }
 .n__btn:last-child{ margin-right: 0; }
+.btn__sq{
+  padding: var(--bui_spacing_2x);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+.btn__group a.active{
+  outline: solid;
+  outline-width: 4px;
+  outline-color: var(--secondary-color);
+}
+.btn__group a{
+  outline: none;
+}
+.btn__sq:hover{
+  background: var(--secondary-color);
+}
+.btn__sq-text{ 
+  height: var(--bui_spacing_4x);
+  width: var(--bui_spacing_4x);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.help{
+  border: 2px solid white;
+  border-radius: 100%;
+}

@@ -20,11 +20,11 @@ const RootLayout = () => {
             <span>Beds</span>
           </NavLink>
           <NavLink to="/flights">
-          <FaPlane size={'1.5em'}/>
+            <FaPlane size={'1.5em'}/>
             <span>Flights</span>
           </NavLink>
           <NavLink to="/carrental">
-          <FaCar size={'1.5em'}/>
+            <FaCar size={'1.5em'}/>
             <span>Car rental</span>
           </NavLink>     
         </nav>

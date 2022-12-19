@@ -1,0 +1,13 @@
+.tooltip{
+  position: relative;
+  background-color: black;
+  color: white;
+}
+.tooltip:before{
+  content:'';
+  position: absolute;
+  top:10px;
+  left: calc(2px+2px);
+  background-color: black;
+
+}

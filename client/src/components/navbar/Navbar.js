@@ -3,6 +3,7 @@ import { useContext} from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { IoMdLogOut } from "react-icons/io";
 import './navbar.css';
+import Tooltip from '../tooltip/Tooltip';
 
 const Navbar = () => {
   const {user, dispatch} = useContext(AuthContext)
@@ -27,7 +28,11 @@ const Navbar = () => {
           <span className="n__logo">LOGO</span>
         </Link>
         <div className="btn__group">
-          <NavLink to="/country" className="btn__sq"><div className="btn__sq-text">USA</div></NavLink>
+          <Tooltip text="Select country">
+            <NavLink to="/country" className="btn__sq">
+              <div className="btn__sq-text">USA</div>
+            </NavLink>
+          </Tooltip>
           <NavLink to="/currency" className="btn__sq"><div className="btn__sq-text">FCH</div></NavLink>
           <NavLink to="/help" className="btn__sq"><div className="btn__sq-text help">?</div></NavLink>
 

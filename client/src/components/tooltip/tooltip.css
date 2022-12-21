@@ -1,25 +1,16 @@
 .tooltip{
-  //position: relative;
   background-color: black;
   color: white;
   margin-top: 15px;
   padding: 4px 10px;
-  transform: translateX(-28%);
 }
-.tooltip:before{
-  content:'';
+.arrow{
   position: absolute;
-  top: -70%; 
-  left: 40%; 
-
-  //right: 0;
-  width: 1px;
-  height: 1px;
-  //transform: rotate(90deg);
-  //transform: translateX(50%);
-  border-top: 10px solid transparent;
-  border-right: 10px solid transparent;
-  border-bottom: 10px solid black;
-  border-left: 10px solid transparent;
-
+  top: 0; 
+  left: 50%; 
+  width: 7px;
+  height: 7px;
+  background: black;
+  transform: translateX(-50%) translateY(-50%) rotate(-135deg);
+  overflow: hidden;
 }

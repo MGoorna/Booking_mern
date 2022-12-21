@@ -11,16 +11,15 @@ const Tooltip = ({text, children}) => {
       x: bounds.x,
       y: bounds.y +bounds.height
     })
-  
   }
+  
   const handleMouseOut = () => {
     setPosition(null)
   }
 
-
   return ( 
   <div
-  style={{ position: "relative" }}
+    style={{ position: "relative", transition: 'all 0.5s ease' }}
       onMouseOver={handleMouseOver}
       onMouseOut={handleMouseOut}>
       {children}
@@ -29,15 +28,17 @@ const Tooltip = ({text, children}) => {
           <div 
             className="tooltip" 
             style={{
-              display: `block`,//${position} ? block : none
+              display: `${position} ? block : none`,
               position: 'absolute',
               top: position.y,
-              left: position.x
-            }}>
-            
-            {text}
+              left: position.x,
+              transform: 'translateX(-28%)',
+            }}>           
+            <div>{text}</div>
+            <div className='arrow'></div>
           </div>,
-          document.body)
+          document.body
+        )
       }
   </div>
   

@@ -11,7 +11,7 @@ const RootLayout = () => {
       <div className="header__container">
       <Navbar />
       <nav className="h__list">
-          <NavLink to="/">
+          <NavLink to="/stays">
             <FaHotel size={'1.5em'}/>
             <span>Stays</span>
           </NavLink>

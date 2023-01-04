@@ -21,6 +21,15 @@
   --section-space-big: 36px;
   --green: #07cc81;
 }
+.ui_spacer-small{
+  margin-bottom: var(--bui_spacing_1x)!important;
+}
+.ui_spacer-medium{
+  margin-bottom: var(--bui_spacing_2x)!important;
+}
+.ui_spacer-large{
+  margin-bottom: var(--bui_spacing_4x)!important;
+}
 .btn{
   padding: 16px;
   position: relative;

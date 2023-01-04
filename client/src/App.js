@@ -6,19 +6,20 @@ import Register from './pages/register/Register';
 import Error from './pages/error/Error';
 import List from '../src/pages/list/List';
 import Hotel from './pages/hotel/Hotel';
+import Rental from './pages/rental/Rental';
 import './App.css';
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css';
 
-
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/' element={<RootLayout />}>
+    <Route path='/' exact element={<RootLayout />}>
       <Route index element={<Home />} />
       <Route path='login' element={<Login />} />
       <Route path='register' element={<Register />} />
       <Route path='list' element={<List />} />
       <Route path='hotel' element={<Hotel />} />
+      <Route path='carrental' element={<Rental />} />
       <Route path='*' element={<Error />} />
     </Route>       
   )

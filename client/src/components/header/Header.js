@@ -9,13 +9,13 @@ import './header.css';
 
 const Header = ({ type }) => {
   const today = new Date();
-  const tomorow = new Date();
+  //const tomorow = new Date();
   const [destination, setDestination] = useState("zermatt");
   const [openDate, setOpenDate] = useState(false);
   const [dates, setDates] = useState([
     {
       startDate: today,
-      endDate: tomorow.setDate(today.getDate()+1),
+      endDate: new Date().setDate(today.getDate()+1),
       key: 'selection'
     }
   ]);

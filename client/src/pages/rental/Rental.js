@@ -8,11 +8,11 @@ import './rental.css'
 
 const Rental = () => {
   const today = new Date();
-  const tomorow = new Date();
+  const tomorrow = new Date();
   const tomorrowFns = add(new Date(),{
     days: 1
   })
-  let x = tomorow.setDate(today.getDate()+1)
+  let x = tomorrow.setDate(today.getDate()+1)
   const [checkedStatus, setCheckedStatus] = useState({same: false , different: false})
   const [pickupLocation, setPickupLocation] = useState('')
   const [dropoffLocation, setDropoffLocation] = useState('')

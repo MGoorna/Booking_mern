@@ -3,12 +3,15 @@ import FeatureProperties from '../../components/featureProperties/FeaturePropert
 import FeatureExplore from '../../components/featureExplore/FeatureExplore';
 import { FaCar, FaCalendarDay } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
-import { format } from 'date-fns';
+import { format, add } from 'date-fns';
 import './rental.css'
 
 const Rental = () => {
   const today = new Date();
   const tomorow = new Date();
+  const tomorrowFns = add(new Date(),{
+    days: 1
+  })
   let x = tomorow.setDate(today.getDate()+1)
   const [checkedStatus, setCheckedStatus] = useState({same: false , different: false})
   const [pickupLocation, setPickupLocation] = useState('')
@@ -17,7 +20,7 @@ const Rental = () => {
   const [datesCar, setDatesCar] = useState([
     {
       startDate: today,
-      endDate: x,
+      endDate: tomorrowFns,
       key: 'selection'
     }
   ]);

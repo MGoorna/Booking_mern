@@ -7,12 +7,9 @@ import { format, add } from 'date-fns';
 import './rental.css'
 
 const Rental = () => {
-  const today = new Date();
-  const tomorrow = new Date();
-  const tomorrowFns = add(new Date(),{
-    days: 1
-  })
-  let x = tomorrow.setDate(today.getDate()+1)
+  const today = new Date(); 
+  const tomorrowFns = add(new Date(),{days: 1})
+  
   const [checkedStatus, setCheckedStatus] = useState({same: false , different: false})
   const [pickupLocation, setPickupLocation] = useState('')
   const [dropoffLocation, setDropoffLocation] = useState('')
@@ -24,15 +21,19 @@ const Rental = () => {
       key: 'selection'
     }
   ]);
+  
 
 
   const checkLocation = (e) => {
     const checked = e.target.checked
     const id = e.target.id
     const opositeType = id === "same"? "different" : "same" 
-    setCheckedStatus({[id]: checked , [opositeType]: !checked})    
+    setCheckedStatus({[id]: checked , [opositeType]: !checked})   
+     console.log(checkedStatus)
   }
+
   const handleSearch = () => {
+    setOpenDate(false)
     console.log(datesCar)
   }
 
@@ -66,9 +67,10 @@ const Rental = () => {
             <input 
               type="text" 
               placeholder="Drop-off location"
-              className='hs__input'
+              className={`hs__input ${checkedStatus.same ? 'disabled' : ''} `}
               value={dropoffLocation}
               onChange={(e) => setDropoffLocation(e.target.value)}
+              disable={checkedStatus.same}
               />
           </div>
           <div className="hs__item">           

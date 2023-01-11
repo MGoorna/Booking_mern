@@ -1,27 +1,16 @@
-import {useState} from 'react'
 import ReactDom from 'react-dom'
+import useElementSize from '../../hooks/useElementSize'
 import './tooltip.css'
 
 const Tooltip = ({text, children}) => {
-  const [position, setPosition]= useState(null)
 
-  const handleMouseOver = (e) => {
-    const bounds = e.currentTarget.getBoundingClientRect()
-    setPosition({
-      x: bounds.x,
-      y: bounds.y +bounds.height
-    })
-  }
-  
-  const handleMouseOut = () => {
-    setPosition(null)
-  }
+  const [ref, position] = useElementSize(null)
 
   return ( 
   <div
     style={{ position: "relative", transition: 'all 0.5s ease' }}
-      onMouseOver={handleMouseOver}
-      onMouseOut={handleMouseOut}>
+      ref={ref}
+      >
       {children}
       {position && 
         ReactDom.createPortal(

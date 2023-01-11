@@ -7,9 +7,11 @@ import Error from './pages/error/Error';
 import List from '../src/pages/list/List';
 import Hotel from './pages/hotel/Hotel';
 import Rental from './pages/rental/Rental';
+import Flights from './pages/flights/Flights';
 import './App.css';
 import 'react-date-range/dist/styles.css'; 
 import 'react-date-range/dist/theme/default.css';
+
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -20,6 +22,7 @@ const router = createBrowserRouter(
       <Route path='list' element={<List />} />
       <Route path='hotel' element={<Hotel />} />
       <Route path='carrental' element={<Rental />} />
+      <Route path='flights' element={<Flights />} />
       <Route path='*' element={<Error />} />
     </Route>       
   )

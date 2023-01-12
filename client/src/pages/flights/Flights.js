@@ -4,7 +4,7 @@ import FeatureExplore from '../../components/featureExplore/FeatureExplore';
 import { FaPlane, FaCalendarDay } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
 import { format, add } from 'date-fns';
-
+import './flights.css'
 
 const Flights = () => {
   const today = new Date(); 

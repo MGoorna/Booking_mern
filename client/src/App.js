@@ -16,7 +16,7 @@ import 'react-date-range/dist/theme/default.css';
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' exact element={<RootLayout />}>
-      <Route index element={<Home />} />
+      <Route index path='/' exact element={<Home />} />
       <Route path='login' element={<Login />} />
       <Route path='register' element={<Register />} />
       <Route path='list' element={<List />} />

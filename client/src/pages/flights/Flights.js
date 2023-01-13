@@ -5,6 +5,7 @@ import { FaPlane, FaCalendarDay } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
 import { format, add } from 'date-fns';
 import './flights.css'
+import Dropdown from '../../components/form/dropdown/Dropdown';
 
 const Flights = () => {
   const today = new Date(); 
@@ -21,6 +22,25 @@ const Flights = () => {
     }
   ]);
 
+  const options = [
+    {
+      id:1,
+      name: 'Economy'
+    },
+    {
+      id:2,
+      name: 'Premium economy'
+    },
+    {
+      id:3,
+      name: 'Business'
+    },
+    {
+      id:4,
+      name: 'First class'
+    }
+  ]
+
   const checkLocation = (e) => {
     const checked = e.target.checked
     const id = e.target.id
@@ -36,6 +56,7 @@ const Flights = () => {
 
   return ( 
     <div className="flights__container">
+      <Dropdown title='Choose flight class' options={options}></Dropdown>
       <h1>Compare and book flights with ease</h1>
       <h3>Discover your next dream destination</h3>
       <section>

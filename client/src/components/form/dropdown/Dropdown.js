@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { BsCheck, BsChevronDown, BsChevronUp } from "react-icons/bs"
 import './dropdown.css'
 
@@ -7,6 +7,7 @@ const Dropdown = ({title, options}) => {
   const [isSelected, setIsSelected] = useState(false)
   const [selection, setSelection] = useState([])
 
+  
   const handleIsOpen  = () => setIsOpen(!isOpen)
 
   const handleSelect = (item) => {
@@ -27,9 +28,12 @@ const Dropdown = ({title, options}) => {
     return false
   }
 
-
   return (
-    <div className="dropdown_box" >
+    <div 
+      className="dropdown_box" 
+      tabIndex={0}
+      onBlur={()=>setIsOpen(false)}
+      >
       <div className='dropdown_box__title'>
         <h4 onClick={handleIsOpen}>
           {(selection.length && selection[0].name) || title} 
@@ -37,13 +41,12 @@ const Dropdown = ({title, options}) => {
         </h4>
       </div>
       <ul className={`${isOpen ? 'open' : ''}`}>
-        {options.map(opt=>(
+        {options && options.map(opt=>(
           <li 
             key={opt.id}
-            onClick={() => handleSelect(opt)}
+            onClick={()=>handleSelect(opt)}
           >
             <span>{opt.name}</span>
-            <span>{isItemInSelection}</span>
             <span>{isItemInSelection(opt) && <BsCheck/>} </span>
           </li>
         ))}

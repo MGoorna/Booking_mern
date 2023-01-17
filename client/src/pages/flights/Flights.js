@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import FeatureProperties from '../../components/featureProperties/FeatureProperties';
 import FeatureExplore from '../../components/featureExplore/FeatureExplore';
+import Dropdown from '../../components/form/dropdown/Dropdown';
 import { FaPlane, FaCalendarDay } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
 import { format, add } from 'date-fns';
 import './flights.css'
-import Dropdown from '../../components/form/dropdown/Dropdown';
+import { useEffect } from 'react';
+import id from 'date-fns/esm/locale/id/index.js';
+
 
 const Flights = () => {
   const today = new Date(); 
@@ -22,21 +25,22 @@ const Flights = () => {
     }
   ]);
 
+
   const options = [
     {
-      id:1,
+      id: 1,
       name: 'Economy'
     },
     {
-      id:2,
+      id: 2,
       name: 'Premium economy'
     },
     {
-      id:3,
+      id: 3,
       name: 'Business'
     },
     {
-      id:4,
+      id: 4,
       name: 'First class'
     }
   ]
@@ -51,16 +55,14 @@ const Flights = () => {
 
   const handleSearch = () => {
     setOpenDate(false)
-    console.log(datesFlight)
   }
 
   return ( 
-    <div className="flights__container">
-      <Dropdown title='Choose flight class' options={options}></Dropdown>
+    <div className="flights__container"> 
       <h1>Compare and book flights with ease</h1>
       <h3>Discover your next dream destination</h3>
-      <section>
-        <div className="ui_spacer-large flights__checkbox_controller_trip">
+      <section className="ui_spacer-large">
+        <div className="flights__checkbox_controller_trip">
           <input type="radio" id="same" 
             checked={checkedStatus.same}
             onChange={checkLocation}/>
@@ -69,17 +71,9 @@ const Flights = () => {
             checked={checkedStatus.different}
             onChange={checkLocation}/>
           <label htmlFor="different">Return to different location</label>  
-          <select name="type" id="">
-            <option value="">--Please choose an option--</option>
-            <option value="Econonmy">Econonmy</option>
-            <option value="premium_economy">Premium economy</option>
-            <option value="business">Business</option>
-            <option value="first">First class</option>
-          </select>
-          <select name="people" id="">
-            <option value="children">Children</option>
-            <option value="adult">Adult</option>
-          </select>
+          <Dropdown title='Choose flight class' options={options} />
+          <Dropdown title='Choose people' 
+            options={[{id:1, name:'Children'},{id:2, name:'Adult'}]} />
         </div>
         <div className="rentalcar__search-box">
           <div className="hs__item">
@@ -100,7 +94,7 @@ const Flights = () => {
               className={`hs__input ${checkedStatus.same ? 'disabled' : ''} `}
               value={toLocation}
               onChange={(e) => setDropoffLocation(e.target.value)}
-              disable={checkedStatus.same}
+              disabled={checkedStatus.same}
               />
           </div>
           <div className="hs__item">           

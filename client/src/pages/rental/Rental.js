@@ -8,8 +8,7 @@ import './rental.css'
 
 const Rental = () => {
   const today = new Date(); 
-  const tomorrowFns = add(new Date(),{days: 1})
-  
+  const tomorrowFns = add(new Date(),{days: 1}) 
   const [checkedStatus, setCheckedStatus] = useState({same: false , different: false})
   const [pickupLocation, setPickupLocation] = useState('')
   const [dropoffLocation, setDropoffLocation] = useState('')
@@ -22,19 +21,15 @@ const Rental = () => {
     }
   ]);
   
-
-
   const checkLocation = (e) => {
     const checked = e.target.checked
     const id = e.target.id
     const opositeType = id === "same"? "different" : "same" 
     setCheckedStatus({[id]: checked , [opositeType]: !checked})   
-     console.log(checkedStatus)
   }
 
   const handleSearch = () => {
     setOpenDate(false)
-    console.log(datesCar)
   }
 
   return ( 
@@ -70,7 +65,7 @@ const Rental = () => {
               className={`hs__input ${checkedStatus.same ? 'disabled' : ''} `}
               value={dropoffLocation}
               onChange={(e) => setDropoffLocation(e.target.value)}
-              disable={checkedStatus.same}
+              disabled={checkedStatus.same}
               />
           </div>
           <div className="hs__item">           

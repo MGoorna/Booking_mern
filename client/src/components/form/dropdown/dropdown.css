@@ -1,17 +1,23 @@
 .dropdown_box{
   position: relative;
   background: var(--white);
+  z-index: 100;
+}
+.dropdown_box__title {
+  border: 1px solid black;
 }
 .dropdown_box__title h4{
   display: flex;
   align-items: center;
-  gap: 10px;
+ gap: 10px;
 }
 .dropdown_box ul{
+  margin: 0;
   display: none;
   position: absolute;
 
   background: var(--white);
+  border: 1px solid black;
 }
 .dropdown_box ul.open{
   display: flex;

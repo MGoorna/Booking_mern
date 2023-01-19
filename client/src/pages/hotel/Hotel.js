@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/header/Header";
-import Navbar from "../../components/navbar/Navbar";
 import MailList from "../../components/mailList/MailList";
 import Footer from "../../components/footer/Footer";
 import Reserve from "../../components/reserve/Reserve";
@@ -22,7 +21,6 @@ const Hotel = () => {
   const [openModal, setOpenModal] = useState(false);
   const { data, loading, error } = useFetch(`/hotel/find/${id}`)
 
-
   const handleReserve = () => {    
     if(user){
       setOpenModal(true) 
@@ -31,16 +29,13 @@ const Hotel = () => {
     }
   }
 
-
-
   return ( <>
-  <Navbar />
   <Header type='list'/>
   {loading ? "Loading": 
     error ? "error"
     : (data && (
     <div className="hotel">
-    <div className="hotel__container">
+      <div className="hotel__container">
       <h1 className="hotel__title">{data.name}</h1>
       <div className="hotel__address">
         <FaCity size={32}/>
@@ -178,11 +173,11 @@ const Hotel = () => {
           <button className="btn hotel__btn btn-revers">Save the property</button>
         </div>
       </div>
+      </div>
+      {openModal && (
+        <Reserve hotelId={id} /*closeModal={closeModal}*/ setOpenModal={setOpenModal}/>
+      )}
     </div>
-    {openModal && (
-      <Reserve hotelId={id} /*closeModal={closeModal}*/ setOpenModal={setOpenModal}/>
-    )}
-  </div>
   ))
   }
   <MailList />

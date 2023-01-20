@@ -1,0 +1,33 @@
+
+.countries__container{
+  margin: 0 auto;
+  width: 960px;
+}
+.countries__container h3{
+  text-align: left;
+}
+.countries__list{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: .8rem;
+}
+.countries__list li{
+  padding: .5rem .2rem;
+}
+.countries__list a{
+  width: 200px;
+  display: flex;
+  align-items: center;
+  gap: .6rem;
+}
+.countries__list img{
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+.countries__list h4{
+  margin: 0;
+  color: #333;
+  font-weight: 100;
+}

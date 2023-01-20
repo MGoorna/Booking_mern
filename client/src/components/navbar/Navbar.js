@@ -1,13 +1,15 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { useContext} from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { IoMdLogOut } from "react-icons/io";
-import './navbar.css';
 import Tooltip from '../tooltip/Tooltip';
+import Countries from '../countries/Countries';
+import './navbar.css';
 
 const Navbar = () => {
   const {user, dispatch} = useContext(AuthContext)
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
 
   const handleLogout = () =>{
     dispatch({type: "LOGOUT"})
@@ -29,8 +31,14 @@ const Navbar = () => {
         </Link>
         <div className="btn__group">
           <Tooltip text="Select country">
-            <NavLink to="/country" className="btn__sq">
-              <div className="btn__sq-text">USA</div>
+            <NavLink to="/" className="btn__sq">
+            
+              <div 
+              className="btn__sq-text"
+              onClick={()=>{setOpenModal(true)}}>USA</div>
+              {openModal && (
+                <Countries setOpenModal={setOpenModal}/>
+              )}
             </NavLink>
           </Tooltip>
           <NavLink to="/currency" className="btn__sq"><div className="btn__sq-text">FCH</div></NavLink>

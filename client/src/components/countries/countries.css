@@ -15,6 +15,9 @@
 .countries__list li{
   padding: .5rem .2rem;
 }
+.countries__list li:hover{
+  background: rgba(0,0,0,0.06);
+}
 .countries__list a{
   width: 200px;
   display: flex;

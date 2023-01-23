@@ -1,6 +1,7 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
+import { LanguageContext } from "../../context/LanguageContext";
 import { IoMdLogOut } from "react-icons/io";
 import Tooltip from '../tooltip/Tooltip';
 import Countries from '../countries/Countries';
@@ -23,6 +24,8 @@ const Navbar = () => {
     navigate('/register')
   }
 
+  const {cca2, img} = useContext(LanguageContext)
+
   return ( <>
     <div className="navbar">
       <nav className="n__container">
@@ -35,7 +38,9 @@ const Navbar = () => {
             
               <div 
               className="btn__sq-text"
-              onClick={()=>{setOpenModal(true)}}>USA</div>
+              onClick={()=>{setOpenModal(true)}}>
+              <img src={img} style={{width: '100%'}} alt={cca2} />
+              </div>
               {openModal && (
                 <Countries setOpenModal={setOpenModal}/>
               )}

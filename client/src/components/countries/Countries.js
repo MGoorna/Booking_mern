@@ -1,6 +1,7 @@
 import axios from 'axios'
 import useSWR from 'swr'
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useContext } from "react";
+import { LanguageContext } from "../../context/LanguageContext";
 import Modal from "../modal/Modal";
 import './countries.css'
 
@@ -11,7 +12,7 @@ const Countries = ({ setOpenModal }) => {
   const { data, error, isLoading } = useSWR('https://restcountries.com/v3.1/all', getCountries, {
     revalidateOnFocus: false
   })
-
+console.log(data)
   let modalContainerRef = useRef();
 
   const closeModal =() => {
@@ -34,6 +35,17 @@ const Countries = ({ setOpenModal }) => {
     }
   },[])
 
+  const { dispatch } = useContext(LanguageContext)
+
+
+  const toggleLanguage = ( cca2, img, name) =>{
+    dispatch({
+      type:'CHANGE',
+      payload: { cca2, img, name }
+    })
+    closeModal()
+  }
+
   if (error) return <div>Failed to load</div>
   if (isLoading) return <div>loading...</div>
   return (
@@ -42,26 +54,26 @@ const Countries = ({ setOpenModal }) => {
         <h3>Suggested for you</h3>
         <ul className='countries__list'>
           <li key={data[0].ccn3+data[0].area}>
-            <a href="/" alt="">
-              <img src={data[0].flags.png} alt="" />
+            <a href="/" alt={data[0].name.common} onClick={()=>toggleLanguage(data[0].cca2, data[0].flags.svg, data[0].altSpellings[0])}>
+              <img src={data[0].flags.png} alt={data[0].name.common} />
               <h4>{Object.values(data[0].languages)[0]}</h4>
             </a>
           </li>
           <li key={data[171].ccn3+data[171].area}>
-            <a href="/" alt="">
-              <img src={data[171].flags.png} alt="" />
+          <a href="/" alt={data[0].name.common} onClick={()=>toggleLanguage(data[0].cca2, data[0].flags.svg, data[0].altSpellings[0])}>
+              <img src={data[171].flags.png} alt={data[0].name.common} />
               <h4>{Object.values(data[171].languages)[0]}</h4>
             </a>
           </li>
           <li key={data[26].ccn3+data[26].area}>
-            <a href="/" alt="">
-              <img src={data[26].flags.png} alt="" />
+            <a href="/" alt={data[0].name.common} onClick={()=>toggleLanguage(data[0].cca2, data[0].flags.svg, data[0].altSpellings[0])}>
+              <img src={data[26].flags.png} alt={data[0].name.common} />
               <h4>{Object.values(data[26].languages)[1]}</h4>
             </a>
           </li>
           <li key={data[26].ccn3+data[0].area}>
-            <a href="/" alt="">
-              <img src={data[26].flags.png} alt="" />
+            <a href="/" alt={data[0].name.common} onClick={()=>toggleLanguage(data[0].cca2, data[0].flags.svg, data[0].altSpellings[0])}>
+              <img src={data[26].flags.png} alt={data[0].name.common} />
               <h4>{Object.values(data[26].languages)[2]}</h4>
             </a>
           </li>
@@ -69,9 +81,9 @@ const Countries = ({ setOpenModal }) => {
         <h3>All languages</h3>
         <ul className='countries__list'>
         {data.slice(0,25).map(i=>(
-          <li key={i.ccn3+i.area}>
+          <li key={i.ccn3+i.area} onClick={()=>toggleLanguage(i.cca2, i.flags.svg, i.altSpellings[0])}>
             <a href="/" alt={i.name.common}>
-              <img src={i.flags.png} alt="" />
+              <img src={i.flags.png} alt={i.name.common} />
               <h4>{i?.languages && Object.values(i?.languages)[0]}</h4>       
             </a>
           </li> 

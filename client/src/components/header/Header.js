@@ -1,9 +1,10 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { SearchContext } from '../../context/SearchContext'
 import { FaBed, FaCalendarDay, FaUserAlt } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
+import debounce from "lodash.debounce";
 import './header.css';
 
 
@@ -27,6 +28,7 @@ const Header = ({ type }) => {
   });
   const { dispatch } = useContext(SearchContext)
 
+
   const handleStepper = (name, operation) => {
     setOptions(prev => {
       return {
@@ -44,6 +46,7 @@ const Header = ({ type }) => {
       navigate('/list', {state:{ destination, dates, options }});     
     }
   }
+  const debounceHandleSearch = useCallback(debounce(handleSearch , 500))
 
   return ( <>
     <header className="header">
@@ -146,7 +149,7 @@ const Header = ({ type }) => {
               </div>
             </div>}
           </div>
-          <button className="btn pulse-animation" onClick={handleSearch}>Search</button>
+          <button className="btn pulse-animation" onClick={debounceHandleSearch}>Search</button>
         </div>
         </>}
       </div>

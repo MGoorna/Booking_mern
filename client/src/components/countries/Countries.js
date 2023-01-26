@@ -8,12 +8,11 @@ import './countries.css'
 const getCountries = url => axios.get(url).then(res=>res.data)
 
 const Countries = ({ setOpenModal }) => {
-
   const { data, error, isLoading } = useSWR('https://restcountries.com/v3.1/all', getCountries, {
     revalidateOnFocus: false
   })
-console.log(data)
   let modalContainerRef = useRef();
+  const { dispatch } = useContext(LanguageContext)
 
   const closeModal =() => {
     setOpenModal(false)
@@ -34,9 +33,6 @@ console.log(data)
       document.removeEventListener('click', handleClose, { capture: true })    
     }
   },[])
-
-  const { dispatch } = useContext(LanguageContext)
-
 
   const toggleLanguage = ( cca2, img, name) =>{
     dispatch({
@@ -89,7 +85,6 @@ console.log(data)
           </li> 
         ))}    
         </ul>
-
       </div>
     </Modal>
   )

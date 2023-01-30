@@ -4,7 +4,10 @@ import { SearchContext } from '../../context/SearchContext'
 import { FaBed, FaCalendarDay, FaUserAlt } from "react-icons/fa";
 import { DateRange } from 'react-date-range';
 import { format } from 'date-fns';
-import debounce from "lodash.debounce";
+
+import _ from "lodash";
+
+//import debounce from "lodash.debounce";
 import './header.css';
 
 
@@ -39,6 +42,10 @@ const Header = ({ type }) => {
   
   const navigate = useNavigate();
 
+  const handleDestination = e => setDestination(e?.target?.value)
+  
+  const debouncedOnHanleDestination = _.debounce(handleDestination, 500)
+
   const handleSearch = () =>{
     console.log(new Date(dates[0].startDate).getTime(), 'option', options )
     if(destination !== ''){
@@ -46,7 +53,7 @@ const Header = ({ type }) => {
       navigate('/list', {state:{ destination, dates, options }});     
     }
   }
-  const debounceHandleSearch = useCallback(debounce(handleSearch , 500))
+  const debounceHandleSearch = useCallback(_.debounce(handleSearch, 500))
 
   return ( <>
     <header className="header">
@@ -65,8 +72,9 @@ const Header = ({ type }) => {
               type="text" 
               placeholder="Where are you going"
               className='hs__input'
-              value={destination}
-              onChange={(e) => setDestination(e.target.value)}
+              //value={destination}
+              //onChange={(e) => setDestination(e.target.value)}
+              onChange={debouncedOnHanleDestination}
               />
           </div>
           <div className="hs__item">           

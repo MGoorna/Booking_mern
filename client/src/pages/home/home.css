@@ -1,24 +1,24 @@
 :root {
-  --bui_spacing_1x: 4px;
-  --bui_spacing_2x: 8px;
-  --bui_spacing_3x: 16px;
-  --bui_spacing_4x: 32px;
+  --bui_spacing_1x: .25rem;
+  --bui_spacing_2x: .5rem;
+  --bui_spacing_3x: 1rem;
+  --bui_spacing_4x: 2rem;
   --primary-color: #003570;
   --secondary-color: #0071c2;
   --white: white;
   --page-shell-max-content-width: 2520px;
-  --explore_padding-inline: 80px;
+  --explore_padding-inline: 5rem;
   --text-primary-color: #262626;
   --text-secondary-color: #fff;
   --text-grey-color: #c5c5c5;
   --search-color: #febb02;
   --link-color: #0071c2;
-  --space-small: 12px;
-  --space-medium: 24px;
-  --space-big: 48px;
-  --section-space-small: 12px;
-  --section-space-medium: 24px;
-  --section-space-big: 36px;
+  --space-small: .75rem;
+  --space-medium: 1.5rem;
+  --space-big: 3rem;
+  --section-space-small: .75rem;
+  --section-space-medium: 1.5rem;
+  --section-space-big: 2.25rem;
   --green: #07cc81;
 }
 .ui_spacer-small{
@@ -31,7 +31,7 @@
   margin-bottom: var(--bui_spacing_4x)!important;
 }
 .btn{
-  padding: 16px;
+  padding: 1rem;
   position: relative;
   background: var(--secondary-color);
   color: var(--white);
@@ -64,7 +64,7 @@
   text-align: left;
   display: flex;
   flex-direction: column;
-  gap: 20px; 
+  gap: 1.25px; 
   z-index: 1;
 }
 .h__title{
@@ -75,7 +75,7 @@
 }
 .pulse-animation{
   position: relative;
-  border-width: 0px;
+  border-width: 0;
   box-shadow: 0 0 0 0 rgba(90, 153, 212, .5);
   -webkit-animation: pulse 1.5s infinite;
   animation: pulse 1.5s .5s infinite;
